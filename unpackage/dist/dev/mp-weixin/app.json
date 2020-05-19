@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/show/show",
+    "pages/information/information"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#007AFF",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#007AFF",
+    "borderStyle": "black",
+    "backgroundColor": "#F8F8F8",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "个人设计"
+      },
+      {
+        "pagePath": "pages/show/show",
+        "text": "照片展示"
+      },
+      {
+        "pagePath": "pages/information/information",
+        "text": "个人信息"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
