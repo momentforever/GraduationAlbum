@@ -242,7 +242,6 @@ var _default =
 
   onShow: function onShow() {
     console.log('index Show');
-    //console.log(getApp().globalData.yourData._id=='');
 
     // if(getApp().globalData.yourData._id==''){
     // 	console.log("未注册");

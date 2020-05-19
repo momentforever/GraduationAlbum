@@ -203,20 +203,36 @@ var _default =
                   submitInfo());case 4:case "end":return _context.stop();}}}, _callee, this);}));function getAllInfo() {return _getAllInfo.apply(this, arguments);}return getAllInfo;}() },
 
 
-  onShow: function onShow() {
-    console.log("成功进入");
-    // uni.login({
-    //   provider: 'weixin',
-    //   success: function (loginRes) {
-    //     console.log(loginRes.authResult);
-    //   }
-    // });
-    uni.getUserInfo({
-      success: function success(result) {
-        console.log(result);
-      } });
+  onShow: function () {var _onShow = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var getWechatCode, getOpenId, wechatCode, openId;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+              console.log("information Show");
 
-  } };exports.default = _default;
+
+              getWechatCode = function getWechatCode() {
+                return new Promise(function (resolve, reject) {
+                  uni.login({
+                    success: function success(res) {
+                      resolve(res.code);
+                    } });
+
+                });
+              };
+
+
+              getOpenId = function getOpenId() {
+                return new Promise(function (resolve, reject) {
+                  uni.request({
+                    url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx3a2620e3cfddcf73&secret=4dd2e657d0fbf7c46bd9f9a0f163c39f&js_code=' + wechatCode + '&grant_type=authorization_code',
+                    success: function success(result) {
+                      //console.log(result);
+                      //console.log(result.data.openid);
+                      resolve(result.data.openid);
+                    } });
+
+                });
+              };_context2.next = 5;return (
+
+                getWechatCode());case 5:wechatCode = _context2.sent;_context2.next = 8;return (
+                getOpenId());case 8:openId = _context2.sent;case 9:case "end":return _context2.stop();}}}, _callee2);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 17)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })

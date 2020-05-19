@@ -107,7 +107,6 @@
 		},
 		onShow: function() {
 			console.log('index Show');
-			//console.log(getApp().globalData.yourData._id=='');
 			
 			// if(getApp().globalData.yourData._id==''){
 			// 	console.log("未注册");

@@ -145,8 +145,8 @@ var _default =
 
 
   onShow: function () {var _onShow = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var queryAllBooks;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-              //console.log('index Show');
-              //console.log(getApp().globalData.yourData._id=='');
+              console.log('index Show');
+
 
               queryAllBooks = function queryAllBooks() {
                 return new Promise(function (resolve, reject) {
@@ -164,10 +164,10 @@ var _default =
 
               getApp().globalData.yourData.yourSchool == '' ||
               getApp().globalData.yourData.yourDepartment == '' ||
-              getApp().globalData.yourData.yourClass == '')) {_context.next = 5;break;}
-              console.log('未注册');_context.next = 7;break;case 5:_context.next = 7;return (
+              getApp().globalData.yourData.yourClass == '')) {_context.next = 6;break;}
+              console.log('未注册');_context.next = 8;break;case 6:_context.next = 8;return (
 
-                queryAllBooks());case 7:case "end":return _context.stop();}}}, _callee);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
+                queryAllBooks());case 8:case "end":return _context.stop();}}}, _callee);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 17)["default"]))
 
 /***/ })

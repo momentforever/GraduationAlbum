@@ -73,14 +73,36 @@
 				await submitInfo();
 			}
 		},
-		onShow: function() {
-			console.log("成功进入");
+		onShow: async function() {
+			console.log("information Show");
 
-			// uni.getUserInfo({
-			// 	success:(result)=>{
-			// 		console.log(result);
-			// 	}
-			// })
+
+			const getWechatCode = function(){
+				return new Promise(function(resolve,reject){
+					uni.login({
+						success:function(res){
+							resolve(res.code);
+						}
+					})
+				})
+			}
+			
+			
+			const getOpenId = function(){
+				return new Promise(function(resolve,reject){
+					uni.request({
+						url:'https://api.weixin.qq.com/sns/jscode2session?appid=wx3a2620e3cfddcf73&secret=4dd2e657d0fbf7c46bd9f9a0f163c39f&js_code='+wechatCode+'&grant_type=authorization_code',
+						success: (result) => {
+							//console.log(result);
+							//console.log(result.data.openid);
+							resolve(result.data.openid);
+						}
+					})
+				})
+			}
+			
+			let wechatCode=await getWechatCode();
+			let openId=await getOpenId();
 		}
 	}
 </script>
