@@ -220,19 +220,36 @@ var _default =
 
               getOpenId = function getOpenId() {
                 return new Promise(function (resolve, reject) {
-                  uni.request({
-                    url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx3a2620e3cfddcf73&secret=4dd2e657d0fbf7c46bd9f9a0f163c39f&js_code=' + wechatCode + '&grant_type=authorization_code',
+                  uniCloud.callFunction({
+                    name: 'getOpenId',
+                    data: {
+                      wechatCode: wechatCode },
+
                     success: function success(result) {
-                      //console.log(result);
-                      //console.log(result.data.openid);
-                      resolve(result.data.openid);
+                      resolve(result);
                     } });
 
                 });
-              };_context2.next = 5;return (
+              };
 
+              // const getOpenId = function(){
+              // 	return new Promise(function(resolve,reject){
+              // 		uni.request({
+              // 			url:'https://api.weixin.qq.com/sns/jscode2session?appid=wx3a2620e3cfddcf73&secret=4dd2e657d0fbf7c46bd9f9a0f163c39f&js_code='+wechatCode+'&grant_type=authorization_code',
+              // 			success: (result) => {
+              // 				console.log(result);
+              // 				//console.log(result.data.openid);
+              // 				//resolve(result.data.openid);
+              // 			}
+              // 		})
+              // 	})
+              // }
+              _context2.next = 5;return (
                 getWechatCode());case 5:wechatCode = _context2.sent;_context2.next = 8;return (
-                getOpenId());case 8:openId = _context2.sent;case 9:case "end":return _context2.stop();}}}, _callee2);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
+                getOpenId());case 8:openId = _context2.sent;
+              console.log(openId.result.data.openid);
+              //console.log(openId.result.data.data);
+            case 10:case "end":return _context2.stop();}}}, _callee2);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 17)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
