@@ -12,33 +12,31 @@
 			}
 		},
 		methods: {
-			
+
 		},
 		onShow: async function() {
 			console.log('index Show');
-			
 			
 			const queryAllBooks = function(){
 				return new Promise(function(resolve,reject){
 					uniCloud.callFunction({
 						name: 'queryAllBooks',
 						data: {
-							studentSchool: getApp().globalData.yourData.yourSchool,
-							studentDepartment: getApp().globalData.yourData.yourDepartment,
-							studentClass: getApp().globalData.yourData.yourClass
+							studentSchool: getApp().globalData.yourData.studentSchool,
+							studentDepartment: getApp().globalData.yourData.studentDepartment,
+							studentClass: getApp().globalData.yourData.studentClass
+						},
+						success:function(res){
+							resolve(res)
 						}
 					})
 				})
 			}
 			
 			
-			if(getApp().globalData.yourData.yourSchool==''||
-			getApp().globalData.yourData.yourDepartment==''||
-			getApp().globalData.yourData.yourClass==''){
-				console.log('未注册');
-			}else{	
-			await queryAllBooks();
-			}
+			let allBooks = await queryAllBooks();
+			
+			console.log(allBooks);
 			
 			// if(getApp().globalData.yourData._id==''){
 			// 	console.log("未注册");

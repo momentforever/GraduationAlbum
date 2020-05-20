@@ -144,30 +144,37 @@ var _default =
   methods: {},
 
 
-  onShow: function () {var _onShow = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var queryAllBooks;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+  onShow: function () {var _onShow = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var queryAllBooks, allBooks;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
               console.log('index Show');
-
 
               queryAllBooks = function queryAllBooks() {
                 return new Promise(function (resolve, reject) {
                   uniCloud.callFunction({
                     name: 'queryAllBooks',
                     data: {
-                      studentSchool: getApp().globalData.yourData.yourSchool,
-                      studentDepartment: getApp().globalData.yourData.yourDepartment,
-                      studentClass: getApp().globalData.yourData.yourClass } });
+                      studentSchool: getApp().globalData.yourData.studentSchool,
+                      studentDepartment: getApp().globalData.yourData.studentDepartment,
+                      studentClass: getApp().globalData.yourData.studentClass },
 
+                    success: function success(res) {
+                      resolve(res);
+                    } });
 
                 });
-              };if (!(
+              };_context.next = 4;return (
 
 
-              getApp().globalData.yourData.yourSchool == '' ||
-              getApp().globalData.yourData.yourDepartment == '' ||
-              getApp().globalData.yourData.yourClass == '')) {_context.next = 6;break;}
-              console.log('未注册');_context.next = 8;break;case 6:_context.next = 8;return (
+                queryAllBooks());case 4:allBooks = _context.sent;
 
-                queryAllBooks());case 8:case "end":return _context.stop();}}}, _callee);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
+              console.log(allBooks);
+
+              // if(getApp().globalData.yourData._id==''){
+              // 	console.log("未注册");
+              // 	uni.switchTab({
+              // 		url: '../information/information'
+              // 	});
+              // }
+            case 6:case "end":return _context.stop();}}}, _callee);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 17)["default"]))
 
 /***/ })

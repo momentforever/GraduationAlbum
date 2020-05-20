@@ -1,7 +1,63 @@
 <script>
 	export default {
-		onLaunch: function() {
+		onLaunch: async function() {
+			let _this=this;
+			
 			console.log('App Launch');
+			
+			const getWechatCode = function() {
+				return new Promise(function(resolve, reject) {
+					uni.login({
+						success: function(res) {
+							resolve(res.code);
+						}
+					})
+				})
+			}
+			
+			const getOpenId = function() {
+				return new Promise(function(resolve, reject) {
+					uniCloud.callFunction({
+						name: 'getOpenId',
+						data: {
+							wechatCode
+						},
+						success:function(result){
+							resolve(result)
+						}
+					})
+				})
+			}
+			
+			const getStudentInfo=function(){
+				return new Promise(function(resolve,reject){
+					uniCloud.callFunction({
+						name:'queryStudentByWechatId',
+						data:{
+							wechatId:openId.result.data.openid
+						},
+						success:function(result){
+							resolve(result);
+						}
+					})
+				})
+			}
+			
+			let wechatCode = await getWechatCode();
+			
+			let openId = await getOpenId();
+			
+			let yourInfo=await getStudentInfo();
+			
+			
+			console.log(yourInfo.result.data);
+			
+			if(yourInfo.result.data==[]){
+				console.log('未注册');
+			}else{
+				getApp().globalData.yourData=yourInfo.result.data[0];
+				console.log(getApp().globalData.yourData);
+			}
 		},
 		onShow: function() {
 			console.log('App Show');
@@ -11,13 +67,13 @@
 		},
 		globalData: {
 			yourData: {
-				_id: '',
+				_id:'',
 				wechatId:'',
-				yourSchool: '',
-				yourDepartment: '',
-				yourClass: '',
-				yourID: '',
-				yourName: ''
+				studentSchool:'',
+				studentDepartment:'',
+				studentClass:'',
+				studentID:'',
+				studentName:''
 			}
 		}
 	}

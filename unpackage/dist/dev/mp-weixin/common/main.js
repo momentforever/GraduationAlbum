@@ -87,11 +87,67 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
 {
-  onLaunch: function onLaunch() {
-    console.log('App Launch');
-  },
+  onLaunch: function () {var _onLaunch = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this, getWechatCode, getOpenId, getStudentInfo, wechatCode, openId, yourInfo;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+              _this = this;
+
+              console.log('App Launch');
+
+              getWechatCode = function getWechatCode() {
+                return new Promise(function (resolve, reject) {
+                  uni.login({
+                    success: function success(res) {
+                      resolve(res.code);
+                    } });
+
+                });
+              };
+
+              getOpenId = function getOpenId() {
+                return new Promise(function (resolve, reject) {
+                  uniCloud.callFunction({
+                    name: 'getOpenId',
+                    data: {
+                      wechatCode: wechatCode },
+
+                    success: function success(result) {
+                      resolve(result);
+                    } });
+
+                });
+              };
+
+              getStudentInfo = function getStudentInfo() {
+                return new Promise(function (resolve, reject) {
+                  uniCloud.callFunction({
+                    name: 'queryStudentByWechatId',
+                    data: {
+                      wechatId: openId.result.data.openid },
+
+                    success: function success(result) {
+                      resolve(result);
+                    } });
+
+                });
+              };_context.next = 7;return (
+
+                getWechatCode());case 7:wechatCode = _context.sent;_context.next = 10;return (
+
+                getOpenId());case 10:openId = _context.sent;_context.next = 13;return (
+
+                getStudentInfo());case 13:yourInfo = _context.sent;
+
+
+              console.log(yourInfo.result.data);
+
+              if (yourInfo.result.data == []) {
+                console.log('未注册');
+              } else {
+                getApp().globalData.yourData = yourInfo.result.data[0];
+                console.log(getApp().globalData.yourData);
+              }case 16:case "end":return _context.stop();}}}, _callee, this);}));function onLaunch() {return _onLaunch.apply(this, arguments);}return onLaunch;}(),
+
   onShow: function onShow() {
     console.log('App Show');
   },
@@ -102,11 +158,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     yourData: {
       _id: '',
       wechatId: '',
-      yourSchool: '',
-      yourDepartment: '',
-      yourClass: '',
-      yourID: '',
-      yourName: '' } } };exports.default = _default;
+      studentSchool: '',
+      studentDepartment: '',
+      studentClass: '',
+      studentID: '',
+      studentName: '' } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 17)["default"]))
 
 /***/ }),
 /* 8 */

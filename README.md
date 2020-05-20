@@ -44,11 +44,11 @@
 		yourData : {
 			_id:'',
 			wechatId:'',
-			yourSchool:'',
-			yourDepartment:'',
-			yourClass:'',
-			yourID:'',
-			yourName:''
+			studentSchool:'',
+			studentDepartment:'',
+			studentClass:'',
+			studentID:'',
+			studentName:''
 		}
 		
 ```

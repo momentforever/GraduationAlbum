@@ -12,6 +12,7 @@
 			<p>姓名：</p>
 			<input class="uni-input" placeholder="输入" v-model="yourDataTemp.yourName" />
 			<button @click="getAllInfo">提交信息</button>
+			<!-- <button @click="queryStudentById">查询信息</button> -->
 		</view>
 	</view>
 </template>
@@ -21,20 +22,24 @@
 		data() {
 			return {
 				yourDataTemp: {
-					_id: '',
-					wechatId: '',
-					yourSchool: '',
-					yourDepartment: '',
-					yourClass: '',
-					yourID: '',
-					yourName: ''
+					_id: getApp().globalData.yourData._id,
+					wechatId: getApp().globalData.yourData.wechatId,
+					yourSchool: getApp().globalData.yourData.studentSchool,
+					yourDepartment: getApp().globalData.yourData.studentDepartment,
+					yourClass: getApp().globalData.yourData.studentClass,
+					yourID: getApp().globalData.yourData.studentID,
+					yourName: getApp().globalData.yourData.studentName
 				}
 			}
 		},
 		methods: {
 			getAllInfo: async function() {
 				let _this = this;
-
+				
+				if(getApp().globalData.yourData._id!=''){
+					console.log('已存在用户不能再注册');
+					return;
+				}
 				//用于提交信息到数据库
 				const submitInfo = function() {
 					return new Promise(function(resolve, reject) {
@@ -47,18 +52,30 @@
 								studentClass: _this.yourDataTemp.yourClass,
 								studentID: _this.yourDataTemp.yourID,
 								studentName: _this.yourDataTemp.yourName
+							},
+							success:function(result){
+								resolve(result);
 							}
 						})
 					})
 				}
-				// console.log(_this.yourDataTemp.wechatId);
-				// console.log(_this.yourDataTemp.yourSchool);
-				// console.log(_this.yourDataTemp.yourDepartment);
-				// console.log(_this.yourDataTemp.yourClass);
-				// console.log(_this.yourDataTemp.yourID);
-				// console.log(_this.yourDataTemp.yourName);
-
+				
+				const getStudentInfo=function(){
+					return new Promise(function(resolve,reject){
+						uniCloud.callFunction({
+							name:'queryStudentByWechatId',
+							data:{
+								wechatId:_this.yourDataTemp.wechatId
+							},
+							success:function(result){
+								resolve(result);
+							}
+						})
+					})
+				}
+				
 				//getApp().globalData.yourData = this.yourDataTemp;
+				
 
 				// if(_this.studentSchool==''||
 				// _this.yourDataTemp.yourSchool==''||
@@ -69,56 +86,28 @@
 				// }else{	
 				// await submitInfo();
 				// }
+				
+				console.log(_this.yourDataTemp);
+				
+				let submitRes = await submitInfo();
+				
+				let studentAllInfo=await getStudentInfo();
 
-				await submitInfo();
+				//console.log(studentAllInfo.result.data);
+				
+				//将信息同步
+				getApp().globalData.yourData=studentAllInfo.result.data[0];
+				
+				console.log(getApp().globalData.yourData);
+				
 			}
 		},
-		onShow: async function() {
+		onShow: function() {
+			let _this=this;
+			
 			console.log("information Show");
-
-
-			const getWechatCode = function() {
-				return new Promise(function(resolve, reject) {
-					uni.login({
-						success: function(res) {
-							resolve(res.code);
-						}
-					})
-				})
-			}
-
-
-			const getOpenId = function() {
-				return new Promise(function(resolve, reject) {
-					uniCloud.callFunction({
-						name: 'getOpenId',
-						data: {
-							wechatCode
-						},
-						success:function(result){
-							resolve(result)
-						}
-					})
-				})
-			}
-
-			// const getOpenId = function(){
-			// 	return new Promise(function(resolve,reject){
-			// 		uni.request({
-			// 			url:'https://api.weixin.qq.com/sns/jscode2session?appid=wx3a2620e3cfddcf73&secret=4dd2e657d0fbf7c46bd9f9a0f163c39f&js_code='+wechatCode+'&grant_type=authorization_code',
-			// 			success: (result) => {
-			// 				console.log(result);
-			// 				//console.log(result.data.openid);
-			// 				//resolve(result.data.openid);
-			// 			}
-			// 		})
-			// 	})
-			// }
-
-			let wechatCode = await getWechatCode();
-			let openId = await getOpenId();
-			console.log(openId.result.data.openid);
-			//console.log(openId.result.data.data);
+					
+			_this.yourDataTemp.wechatId=getApp().globalData.yourData._id;
 
 		}
 	}
