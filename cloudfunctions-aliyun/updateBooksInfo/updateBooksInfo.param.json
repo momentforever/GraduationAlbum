@@ -1,3 +1,8 @@
 // 本文件中的json内容将在云函数【上传并运行】时作为参数传给云函数。
-{
+{  "studentClass": "19电一",
+  "studentDepartment": "信息工程学院",
+  "studentID": "174010111",
+  "studentName": "刘子庭",
+  "studentSchool": "北京印刷学院",
+  "wechatId": "oLv8241tSq2v-kFT59ICgnQ38wFY"
 }

@@ -148,6 +148,8 @@
 		onShow: function() {
 			console.log('index Show');
 			
+			console.log('index页面的booksinfo');
+			console.log(getApp().globalData.yourBooksInfo);
 
 			// if(getApp().globalData.yourData._id==''){
 			// 	console.log("未注册");

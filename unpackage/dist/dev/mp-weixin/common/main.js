@@ -170,7 +170,7 @@ __webpack_require__.r(__webpack_exports__);
                 getApp().globalData.yourData = yourInfo.result.data[0];
 
                 //将自己的书籍信息同步到本地
-                getApp().globalData.yourBooksInfo = yourBookInfo.result.data[0];
+                getApp().globalData.yourBooksInfo = yourBookInfo.result.data;
 
 
                 console.log('登录时调用的信息=>');
