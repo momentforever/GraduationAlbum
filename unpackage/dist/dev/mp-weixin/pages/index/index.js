@@ -138,22 +138,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -162,110 +147,11 @@ __webpack_require__.r(__webpack_exports__);
 var _default =
 {
   data: function data() {
-    return {
-      tempPhotoUrl: '',
-      booksInfo: [{
-        _id: '',
-        wechatId: '',
-        studentSchool: '',
-        studentDepartment: '',
-        studentClass: '',
-        studentName: '',
-        studentID: '',
-        photoUrl: '',
-        leaveMsg: '',
-        bookTemplate: '0' }] };
+    return {};
 
 
   },
-  methods: {
-    choosePhoto: function () {var _choosePhoto = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this, chooseImage;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                _this = this;
-
-                chooseImage = function chooseImage() {
-                  return new Promise(function (resolve, reject) {
-
-                    uni.chooseImage({
-                      count: 1, //默认9
-                      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-                      sourceType: ['album'], //从相册选择
-                      success: function success(res) {
-                        //console.log(res.tempFilePaths);
-                        //console.log(res.tempFiles);
-                        resolve(res.tempFilePaths[0]);
-                      } });
-
-
-                  });
-                };_context.next = 4;return (
-
-                  chooseImage());case 4:_this.tempPhotoUrl = _context.sent;case 5:case "end":return _context.stop();}}}, _callee, this);}));function choosePhoto() {return _choosePhoto.apply(this, arguments);}return choosePhoto;}(),
-
-    submitToDatabase: function () {var _submitToDatabase = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this, uploadPhoto, submitInfo;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-                _this = this;
-
-                uploadPhoto = function uploadPhoto() {
-                  return new Promise(function (resolve, reject) {
-                    uniCloud.uploadFile({
-                      filePath: _this.tempPhotoUrl,
-                      onUploadProgress: function onUploadProgress(progressEvent) {
-                        // console.log(progressEvent);
-                        // var percentCompleted = Math.round(
-                        // 	(progressEvent.loaded * 100) / progressEvent.total
-                        // );
-                      },
-                      success: function success(res) {
-                        resolve(res.fileID);
-                      } });
-
-                  });
-                };
-
-                submitInfo = function submitInfo() {
-                  return new Promise(function (resolve, reject) {
-                    uniCloud.callFunction({
-                      name: 'addBooksInfo',
-                      data: {
-                        wechatId: getApp().globalData.yourData.wechatId,
-                        studentSchool: getApp().globalData.yourData.studentSchool,
-                        studentDepartment: getApp().globalData.yourData.studentDepartment,
-                        studentClass: getApp().globalData.yourData.studentClass,
-                        studentName: getApp().globalData.yourData.studentName,
-                        studentID: getApp().globalData.yourData.studentID,
-                        photoUrl: _this.booksInfo[0].photoUrl,
-                        leaveMsg: _this.booksInfo[0].leaveMsg,
-                        bookTemplate: '0' } });
-
-
-                  });
-                };if (!(
-
-
-                _this.tempPhotoUrl == '' ||
-                _this.booksInfo[0].leaveMsg == '')) {_context2.next = 7;break;}
-                console.log('信息不能为空');_context2.next = 15;break;case 7:
-
-                console.log("成功上传");_context2.next = 10;return (
-                  uploadPhoto());case 10:_this.booksInfo[0].photoUrl = _context2.sent;
-                console.log('booksinfo是=>');
-                console.log(_this.booksInfo[0]);_context2.next = 15;return (
-                  submitInfo());case 15:case "end":return _context2.stop();}}}, _callee2, this);}));function submitToDatabase() {return _submitToDatabase.apply(this, arguments);}return submitToDatabase;}() },
-
-
-
-  onShow: function onShow() {
-    console.log('index Show');
-
-    console.log('index获得的yourdata=>');
-    console.log(getApp().globalData.yourData);
-    // if(getApp().globalData.yourData._id==''){
-    // 	console.log("未注册");
-    // 	uni.switchTab({
-    // 		url: '../information/information'
-    // 	});
-    // }
-  } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 8)["default"]))
+  methods: {} };exports.default = _default;
 
 /***/ })
 ],[[16,"common/runtime","common/vendor"]]]);

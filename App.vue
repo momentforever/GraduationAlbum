@@ -43,6 +43,21 @@
 				})
 			}
 			
+			const getBooksInfo=function(){
+				return new Promise(function(resolve,reject){
+					uniCloud.callFunction({
+						name:'queryYourBooks',
+						data:{
+							wechatId:openId.result.data.openid
+						},
+						success:function(result){
+							resolve(result);
+						}
+					})
+				})
+			}
+			
+			
 			uni.showLoading({
 				title: '正在启动ing...',
 				mask:true
@@ -54,15 +69,24 @@
 			
 			let yourInfo=await getStudentInfo();
 			
+			let yourBookInfo=await getBooksInfo();
+			
 			console.log('你的openid是=>');
 			console.log(openId.result.data.openid);
 			
 			if(yourInfo.result.data==[]){
 				console.log('未注册');
 			}else{
+				//将用户信息同步到本地
 				getApp().globalData.yourData=yourInfo.result.data[0];
+				
+				//将自己的书籍信息同步到本地
+				getApp().globalData.yourBooksInfo=yourBookInfo.result.data[0];
+				
+				
 				console.log('登录时调用的信息=>');
 				console.log(getApp().globalData.yourData);
+				console.log(getApp().globalData.yourBooksInfo);
 			}
 			
 			uni.hideLoading();
@@ -82,7 +106,19 @@
 				studentClass:'',
 				studentID:'',
 				studentName:''
-			}
+			},
+			yourBooksInfo : [{
+				_id:'',
+				wechatId:'',
+				studentSchool: '',
+				studentDepartment: '',
+				studentClass: '',
+				studentName:'',
+				studentID:'',
+				photoUrl:'',
+				leaveMsg:'',
+				bookTemplate:''
+			}]
 		}
 	}
 </script>

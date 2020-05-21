@@ -2,7 +2,7 @@
 	"pages": [{
 		"path": "pages/index/index",
 		"style": {
-			"navigationBarTitleText": "信息"
+			"navigationBarTitleText": "主页"
 		}
 	},{
 		"path": "pages/show/show",
@@ -15,6 +15,12 @@
 			"navigationBarTitleText": "账户"
 		}
 	}
+        ,{
+            "path" : "pages/design/design",
+            "style" : {
+				"navigationBarTitleText": "设计"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
@@ -29,7 +35,7 @@
 		"backgroundColor": "#F8F8F8",
 		"list": [{
 				"pagePath": "pages/index/index",
-				"text": "个人设计"
+				"text": "主页"
 			},
 			{
 				"pagePath": "pages/show/show",
@@ -37,7 +43,11 @@
 			}, {
 				"pagePath": "pages/information/information",
 				"text": "个人信息"
-			}
+			},{
+            "pagePath" : "pages/design/design",
+			"text": "个人设计"
+        }
+			
 		]
 	},
 	"condition" : { //模式配置，仅开发期间生效

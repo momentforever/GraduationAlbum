@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/show/show",
-    "pages/information/information"
+    "pages/information/information",
+    "pages/design/design"
   ],
   "subPackages": [],
   "window": {
@@ -19,7 +20,7 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "个人设计"
+        "text": "主页"
       },
       {
         "pagePath": "pages/show/show",
@@ -28,10 +29,13 @@
       {
         "pagePath": "pages/information/information",
         "text": "个人信息"
+      },
+      {
+        "pagePath": "pages/design/design",
+        "text": "个人设计"
       }
     ]
   },
   "permission": {},
-  "usingComponents": {},
-  "sitemapLocation": "sitemap5.json"
+  "usingComponents": {}
 }
