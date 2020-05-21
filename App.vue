@@ -49,13 +49,14 @@
 			
 			let yourInfo=await getStudentInfo();
 			
-			
-			console.log(yourInfo.result.data);
+			console.log('你的openid是=>');
+			console.log(openId.result.data.openid);
 			
 			if(yourInfo.result.data==[]){
 				console.log('未注册');
 			}else{
 				getApp().globalData.yourData=yourInfo.result.data[0];
+				console.log('登录时调用的信息=>');
 				console.log(getApp().globalData.yourData);
 			}
 		},

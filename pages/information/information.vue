@@ -36,15 +36,34 @@
 			getAllInfo: async function() {
 				let _this = this;
 				
-				if(getApp().globalData.yourData._id!=''){
-					console.log('已存在用户不能再注册');
-					return;
-				}
+				// if(getApp().globalData.yourData._id!=''){
+				// 	console.log('已存在用户不能再注册');
+				// 	return;
+				// }
 				//用于提交信息到数据库
-				const submitInfo = function() {
+				const addStudentInfo = function() {
 					return new Promise(function(resolve, reject) {
 						uniCloud.callFunction({
 							name: 'addStudentsData',
+							data: {
+								wechatId: _this.yourDataTemp.wechatId,
+								studentSchool: _this.yourDataTemp.yourSchool,
+								studentDepartment: _this.yourDataTemp.yourDepartment,
+								studentClass: _this.yourDataTemp.yourClass,
+								studentID: _this.yourDataTemp.yourID,
+								studentName: _this.yourDataTemp.yourName
+							},
+							success:function(result){
+								resolve(result);
+							}
+						})
+					})
+				}
+				
+				const updateStudentInfo = function() {
+					return new Promise(function(resolve, reject) {
+						uniCloud.callFunction({
+							name: 'updateStudentsData',
 							data: {
 								wechatId: _this.yourDataTemp.wechatId,
 								studentSchool: _this.yourDataTemp.yourSchool,
@@ -74,9 +93,6 @@
 					})
 				}
 				
-				//getApp().globalData.yourData = this.yourDataTemp;
-				
-
 				// if(_this.studentSchool==''||
 				// _this.yourDataTemp.yourSchool==''||
 				// _this.yourDataTemp.yourDepartment==''||
@@ -87,18 +103,41 @@
 				// await submitInfo();
 				// }
 				
-				console.log(_this.yourDataTemp);
-				
-				let submitRes = await submitInfo();
+				console.log('你的_id=>');
+				console.log(_this.yourDataTemp._id);
+				console.log('你的openid=>');
+				console.log(_this.yourDataTemp.wechatId);
 				
 				let studentAllInfo=await getStudentInfo();
+				console.log('你存在本地的信息=>');
+				console.log(_this.yourDataTemp);
+				console.log('第一次查询的结果=>');
+				console.log(studentAllInfo.result.data);
+				
+				if(studentAllInfo.result.data==[]){
+					console.log('第一次注册账号');
+					let submitRes = await addStudentInfo();
+					console.log('增添用户返回值=>');
+					console.log(submitRes);
+				}else{	
+					console.log('修改账号');
+					let submitRes = await updateStudentInfo();
+					console.log('修改用户返回值=>');
+					console.log(submitRes);
+				}
+				
+				
 
 				//console.log(studentAllInfo.result.data);
 				
 				//将信息同步
-				getApp().globalData.yourData=studentAllInfo.result.data[0];
+				let newStudentAllInfo=await getStudentInfo();
+				console.log('第二次查询的结果=>');
+				console.log(newStudentAllInfo);
 				
-				console.log(getApp().globalData.yourData);
+				getApp().globalData.yourData=newStudentAllInfo.result.data[0];
+				
+				//console.log(getApp().globalData.yourData);
 				
 			}
 		},
@@ -107,7 +146,7 @@
 			
 			console.log("information Show");
 					
-			_this.yourDataTemp.wechatId=getApp().globalData.yourData._id;
+			_this.yourDataTemp.wechatId=getApp().globalData.yourData.wechatId;
 
 		}
 	}

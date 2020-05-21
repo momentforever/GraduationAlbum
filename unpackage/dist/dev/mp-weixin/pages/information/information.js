@@ -28,7 +28,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _information_vue_vue_type_template_id_261ce4a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./information.vue?vue&type=template&id=261ce4a2& */ 30);
 /* harmony import */ var _information_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./information.vue?vue&type=script&lang=js& */ 32);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _information_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _information_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 10);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 15);
 
 var renderjs
 
@@ -128,7 +128,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+/* WEBPACK VAR INJECTION */(function(uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -163,18 +163,37 @@ var _default =
 
   },
   methods: {
-    getAllInfo: function () {var _getAllInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this, submitInfo, getStudentInfo, submitRes, studentAllInfo;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                _this = this;if (!(
+    getAllInfo: function () {var _getAllInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this, addStudentInfo, updateStudentInfo, getStudentInfo, studentAllInfo, submitRes, _submitRes, newStudentAllInfo;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                _this = this;
 
-                getApp().globalData.yourData._id != '')) {_context.next = 4;break;}
-                console.log('已存在用户不能再注册');return _context.abrupt("return");case 4:
-
-
+                // if(getApp().globalData.yourData._id!=''){
+                // 	console.log('已存在用户不能再注册');
+                // 	return;
+                // }
                 //用于提交信息到数据库
-                submitInfo = function submitInfo() {
+                addStudentInfo = function addStudentInfo() {
                   return new Promise(function (resolve, reject) {
                     uniCloud.callFunction({
                       name: 'addStudentsData',
+                      data: {
+                        wechatId: _this.yourDataTemp.wechatId,
+                        studentSchool: _this.yourDataTemp.yourSchool,
+                        studentDepartment: _this.yourDataTemp.yourDepartment,
+                        studentClass: _this.yourDataTemp.yourClass,
+                        studentID: _this.yourDataTemp.yourID,
+                        studentName: _this.yourDataTemp.yourName },
+
+                      success: function success(result) {
+                        resolve(result);
+                      } });
+
+                  });
+                };
+
+                updateStudentInfo = function updateStudentInfo() {
+                  return new Promise(function (resolve, reject) {
+                    uniCloud.callFunction({
+                      name: 'updateStudentsData',
                       data: {
                         wechatId: _this.yourDataTemp.wechatId,
                         studentSchool: _this.yourDataTemp.yourSchool,
@@ -204,9 +223,6 @@ var _default =
                   });
                 };
 
-                //getApp().globalData.yourData = this.yourDataTemp;
-
-
                 // if(_this.studentSchool==''||
                 // _this.yourDataTemp.yourSchool==''||
                 // _this.yourDataTemp.yourDepartment==''||
@@ -217,19 +233,42 @@ var _default =
                 // await submitInfo();
                 // }
 
-                console.log(_this.yourDataTemp);_context.next = 9;return (
+                console.log('你的_id=>');
+                console.log(_this.yourDataTemp._id);
+                console.log('你的openid=>');
+                console.log(_this.yourDataTemp.wechatId);_context.next = 10;return (
 
-                  submitInfo());case 9:submitRes = _context.sent;_context.next = 12;return (
+                  getStudentInfo());case 10:studentAllInfo = _context.sent;
+                console.log('你存在本地的信息=>');
+                console.log(_this.yourDataTemp);
+                console.log('第一次查询的结果=>');
+                console.log(studentAllInfo.result.data);if (!(
 
-                  getStudentInfo());case 12:studentAllInfo = _context.sent;
+                studentAllInfo.result.data == [])) {_context.next = 24;break;}
+                console.log('第一次注册账号');_context.next = 19;return (
+                  addStudentInfo());case 19:submitRes = _context.sent;
+                console.log('增添用户返回值=>');
+                console.log(submitRes);_context.next = 30;break;case 24:
 
-                //console.log(studentAllInfo.result.data);
+                console.log('修改账号');_context.next = 27;return (
+                  updateStudentInfo());case 27:_submitRes = _context.sent;
+                console.log('修改用户返回值=>');
+                console.log(_submitRes);case 30:_context.next = 32;return (
 
-                //将信息同步
-                getApp().globalData.yourData = studentAllInfo.result.data[0];
 
-                console.log(getApp().globalData.yourData);case 15:case "end":return _context.stop();}}}, _callee, this);}));function getAllInfo() {return _getAllInfo.apply(this, arguments);}return getAllInfo;}() },
 
+
+
+
+
+                  getStudentInfo());case 32:newStudentAllInfo = _context.sent;
+                console.log('第二次查询的结果=>');
+                console.log(newStudentAllInfo);
+
+                getApp().globalData.yourData = newStudentAllInfo.result.data[0];
+
+                //console.log(getApp().globalData.yourData);
+              case 36:case "end":return _context.stop();}}}, _callee, this);}));function getAllInfo() {return _getAllInfo.apply(this, arguments);}return getAllInfo;}() },
 
 
   onShow: function onShow() {
@@ -237,10 +276,10 @@ var _default =
 
     console.log("information Show");
 
-    _this.yourDataTemp.wechatId = getApp().globalData.yourData._id;
+    _this.yourDataTemp.wechatId = getApp().globalData.yourData.wechatId;
 
   } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 17)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 8)["default"]))
 
 /***/ })
 

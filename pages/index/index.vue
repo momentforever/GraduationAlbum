@@ -82,11 +82,11 @@
 						uniCloud.callFunction({
 							name: 'addBooksInfo',
 							data: {
-								studentSchool: '',
-								studentDepartment: '',
-								studentClass: '',
-								studentID:0,
-								studentName:'student',
+								studentSchool: getApp().globalData.yourData.studentSchool,
+								studentDepartment: getApp().globalData.yourData.studentDepartment,
+								studentClass: getApp().globalData.yourData.studentClass,
+								studentID:getApp().globalData.yourData.studentID,
+								studentName:getApp().globalData.yourData.studentName,
 								photoUrl:_this.booksInfo[0].photoUrl,
 								leaveMsg:_this.booksInfo[0].leaveMsg,
 								bookTemplate:''
@@ -100,8 +100,9 @@
 				_this.booksInfo[0].leaveMsg==''){
 					console.log('信息不能为空');
 				}else{
-				_this.booksInfo[0].photoUrl = await uploadPhoto();
-				await submitInfo();
+					console.log("成功上传");
+					_this.booksInfo[0].photoUrl = await uploadPhoto();
+					await submitInfo();
 				}
 			}
 		},
