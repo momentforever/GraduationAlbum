@@ -128,8 +128,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
-//
+/* WEBPACK VAR INJECTION */(function(uniCloud, uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -158,18 +157,15 @@ var _default =
         yourDepartment: getApp().globalData.yourData.studentDepartment,
         yourClass: getApp().globalData.yourData.studentClass,
         yourID: getApp().globalData.yourData.studentID,
-        yourName: getApp().globalData.yourData.studentName } };
+        yourName: getApp().globalData.yourData.studentName },
 
+      showButton: '' };
 
   },
   methods: {
-    getAllInfo: function () {var _getAllInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this, addStudentInfo, updateStudentInfo, getStudentInfo, studentAllInfo, submitRes, _submitRes, newStudentAllInfo;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    submitAllInfo: function () {var _submitAllInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this, addStudentInfo, updateStudentInfo, getStudentInfo, studentAllInfo, submitRes, _submitRes, newStudentAllInfo;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 _this = this;
 
-                // if(getApp().globalData.yourData._id!=''){
-                // 	console.log('已存在用户不能再注册');
-                // 	return;
-                // }
                 //用于提交信息到数据库
                 addStudentInfo = function addStudentInfo() {
                   return new Promise(function (resolve, reject) {
@@ -233,27 +229,32 @@ var _default =
                 // await submitInfo();
                 // }
 
+                uni.showLoading({
+                  title: '加载ing...',
+                  mask: true });
+
+
                 console.log('你的_id=>');
                 console.log(_this.yourDataTemp._id);
                 console.log('你的openid=>');
-                console.log(_this.yourDataTemp.wechatId);_context.next = 10;return (
+                console.log(_this.yourDataTemp.wechatId);_context.next = 11;return (
 
-                  getStudentInfo());case 10:studentAllInfo = _context.sent;
+                  getStudentInfo());case 11:studentAllInfo = _context.sent;
                 console.log('你存在本地的信息=>');
                 console.log(_this.yourDataTemp);
                 console.log('第一次查询的结果=>');
                 console.log(studentAllInfo.result.data);if (!(
 
-                studentAllInfo.result.data == [])) {_context.next = 24;break;}
-                console.log('第一次注册账号');_context.next = 19;return (
-                  addStudentInfo());case 19:submitRes = _context.sent;
+                studentAllInfo.result.data == [])) {_context.next = 25;break;}
+                console.log('第一次注册账号');_context.next = 20;return (
+                  addStudentInfo());case 20:submitRes = _context.sent;
                 console.log('增添用户返回值=>');
-                console.log(submitRes);_context.next = 30;break;case 24:
+                console.log(submitRes);_context.next = 31;break;case 25:
 
-                console.log('修改账号');_context.next = 27;return (
-                  updateStudentInfo());case 27:_submitRes = _context.sent;
+                console.log('修改账号');_context.next = 28;return (
+                  updateStudentInfo());case 28:_submitRes = _context.sent;
                 console.log('修改用户返回值=>');
-                console.log(_submitRes);case 30:_context.next = 32;return (
+                console.log(_submitRes);case 31:_context.next = 33;return (
 
 
 
@@ -261,25 +262,33 @@ var _default =
 
 
 
-                  getStudentInfo());case 32:newStudentAllInfo = _context.sent;
+                  getStudentInfo());case 33:newStudentAllInfo = _context.sent;
                 console.log('第二次查询的结果=>');
                 console.log(newStudentAllInfo);
 
                 getApp().globalData.yourData = newStudentAllInfo.result.data[0];
 
+                uni.hideLoading();
                 //console.log(getApp().globalData.yourData);
-              case 36:case "end":return _context.stop();}}}, _callee, this);}));function getAllInfo() {return _getAllInfo.apply(this, arguments);}return getAllInfo;}() },
+              case 38:case "end":return _context.stop();}}}, _callee, this);}));function submitAllInfo() {return _submitAllInfo.apply(this, arguments);}return submitAllInfo;}() },
 
 
   onShow: function onShow() {
+
     var _this = this;
 
     console.log("information Show");
 
-    _this.yourDataTemp.wechatId = getApp().globalData.yourData.wechatId;
+    if (_this.yourDataTemp._id == '') {
+      _this.showButton = '注册信息';
+    } else {
+      _this.showButton = '修改信息';
+    }
+    //_this.yourDataTemp.wechatId=getApp().globalData.yourData.wechatId;
+
 
   } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 8)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 8)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

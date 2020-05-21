@@ -43,6 +43,11 @@
 				})
 			}
 			
+			uni.showLoading({
+				title: '正在启动ing...',
+				mask:true
+			})
+			
 			let wechatCode = await getWechatCode();
 			
 			let openId = await getOpenId();
@@ -59,6 +64,8 @@
 				console.log('登录时调用的信息=>');
 				console.log(getApp().globalData.yourData);
 			}
+			
+			uni.hideLoading();
 		},
 		onShow: function() {
 			console.log('App Show');

@@ -166,6 +166,7 @@ var _default =
       tempPhotoUrl: '',
       booksInfo: [{
         _id: '',
+        wechatId: '',
         studentSchool: '',
         studentDepartment: '',
         studentClass: '',
@@ -173,7 +174,7 @@ var _default =
         studentID: '',
         photoUrl: '',
         leaveMsg: '',
-        bookTemplate: '' }] };
+        bookTemplate: '0' }] };
 
 
   },
@@ -225,14 +226,15 @@ var _default =
                     uniCloud.callFunction({
                       name: 'addBooksInfo',
                       data: {
+                        wechatId: getApp().globalData.yourData.wechatId,
                         studentSchool: getApp().globalData.yourData.studentSchool,
                         studentDepartment: getApp().globalData.yourData.studentDepartment,
                         studentClass: getApp().globalData.yourData.studentClass,
-                        studentID: getApp().globalData.yourData.studentID,
                         studentName: getApp().globalData.yourData.studentName,
+                        studentID: getApp().globalData.yourData.studentID,
                         photoUrl: _this.booksInfo[0].photoUrl,
                         leaveMsg: _this.booksInfo[0].leaveMsg,
-                        bookTemplate: '' } });
+                        bookTemplate: '0' } });
 
 
                   });
@@ -241,17 +243,21 @@ var _default =
 
                 _this.tempPhotoUrl == '' ||
                 _this.booksInfo[0].leaveMsg == '')) {_context2.next = 7;break;}
-                console.log('信息不能为空');_context2.next = 13;break;case 7:
+                console.log('信息不能为空');_context2.next = 15;break;case 7:
 
                 console.log("成功上传");_context2.next = 10;return (
-                  uploadPhoto());case 10:_this.booksInfo[0].photoUrl = _context2.sent;_context2.next = 13;return (
-                  submitInfo());case 13:case "end":return _context2.stop();}}}, _callee2, this);}));function submitToDatabase() {return _submitToDatabase.apply(this, arguments);}return submitToDatabase;}() },
+                  uploadPhoto());case 10:_this.booksInfo[0].photoUrl = _context2.sent;
+                console.log('booksinfo是=>');
+                console.log(_this.booksInfo[0]);_context2.next = 15;return (
+                  submitInfo());case 15:case "end":return _context2.stop();}}}, _callee2, this);}));function submitToDatabase() {return _submitToDatabase.apply(this, arguments);}return submitToDatabase;}() },
 
 
 
   onShow: function onShow() {
     console.log('index Show');
 
+    console.log('index获得的yourdata=>');
+    console.log(getApp().globalData.yourData);
     // if(getApp().globalData.yourData._id==''){
     // 	console.log("未注册");
     // 	uni.switchTab({

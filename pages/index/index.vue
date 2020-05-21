@@ -26,6 +26,7 @@
 				tempPhotoUrl:'',
 				booksInfo : [{
 					_id:'',
+					wechatId:'',
 					studentSchool: '',
 					studentDepartment: '',
 					studentClass: '',
@@ -33,7 +34,7 @@
 					studentID:'',
 					photoUrl:'',
 					leaveMsg:'',
-					bookTemplate:''
+					bookTemplate:'0'
 				}]
 			}
 		},
@@ -85,14 +86,15 @@
 						uniCloud.callFunction({
 							name: 'addBooksInfo',
 							data: {
+								wechatId:getApp().globalData.yourData.wechatId,
 								studentSchool: getApp().globalData.yourData.studentSchool,
 								studentDepartment: getApp().globalData.yourData.studentDepartment,
 								studentClass: getApp().globalData.yourData.studentClass,
-								studentID:getApp().globalData.yourData.studentID,
 								studentName:getApp().globalData.yourData.studentName,
+								studentID:getApp().globalData.yourData.studentID,
 								photoUrl:_this.booksInfo[0].photoUrl,
 								leaveMsg:_this.booksInfo[0].leaveMsg,
-								bookTemplate:''
+								bookTemplate:'0'
 							}
 						})
 					})
@@ -105,6 +107,8 @@
 				}else{
 					console.log("成功上传");
 					_this.booksInfo[0].photoUrl = await uploadPhoto();
+					console.log('booksinfo是=>');
+					console.log(_this.booksInfo[0]);
 					await submitInfo();
 				}
 			}
@@ -112,6 +116,8 @@
 		onShow: function() {
 			console.log('index Show');
 			
+			console.log('index获得的yourdata=>');
+			console.log(getApp().globalData.yourData);
 			// if(getApp().globalData.yourData._id==''){
 			// 	console.log("未注册");
 			// 	uni.switchTab({

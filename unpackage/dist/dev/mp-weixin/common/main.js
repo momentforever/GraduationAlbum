@@ -130,13 +130,18 @@ __webpack_require__.r(__webpack_exports__);
                     } });
 
                 });
-              };_context.next = 7;return (
+              };
 
-                getWechatCode());case 7:wechatCode = _context.sent;_context.next = 10;return (
+              uni.showLoading({
+                title: '正在启动ing...',
+                mask: true });_context.next = 8;return (
 
-                getOpenId());case 10:openId = _context.sent;_context.next = 13;return (
 
-                getStudentInfo());case 13:yourInfo = _context.sent;
+                getWechatCode());case 8:wechatCode = _context.sent;_context.next = 11;return (
+
+                getOpenId());case 11:openId = _context.sent;_context.next = 14;return (
+
+                getStudentInfo());case 14:yourInfo = _context.sent;
 
               console.log('你的openid是=>');
               console.log(openId.result.data.openid);
@@ -147,7 +152,9 @@ __webpack_require__.r(__webpack_exports__);
                 getApp().globalData.yourData = yourInfo.result.data[0];
                 console.log('登录时调用的信息=>');
                 console.log(getApp().globalData.yourData);
-              }case 17:case "end":return _context.stop();}}}, _callee, this);}));function onLaunch() {return _onLaunch.apply(this, arguments);}return onLaunch;}(),
+              }
+
+              uni.hideLoading();case 19:case "end":return _context.stop();}}}, _callee, this);}));function onLaunch() {return _onLaunch.apply(this, arguments);}return onLaunch;}(),
 
   onShow: function onShow() {
     console.log('App Show');

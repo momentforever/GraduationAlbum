@@ -32,6 +32,10 @@
 
 		},
 		onShow: async function() {
+			uni.showLoading({
+				title: '请稍等...',
+				mask:true
+			})
 			
 			let _this=this;
 			console.log('index Show');
@@ -69,6 +73,8 @@
 			// 		url: '../information/information'
 			// 	});
 			// }
+			
+			uni.hideLoading();
 		}
 	}
 </script>

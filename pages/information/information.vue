@@ -11,8 +11,7 @@
 			<input class="uni-input" placeholder="输入" v-model="yourDataTemp.yourID" />
 			<p>姓名：</p>
 			<input class="uni-input" placeholder="输入" v-model="yourDataTemp.yourName" />
-			<button @click="getAllInfo">提交信息</button>
-			<!-- <button @click="queryStudentById">查询信息</button> -->
+			<button @click="submitAllInfo">{{showButton}}</button>
 		</view>
 	</view>
 </template>
@@ -29,17 +28,14 @@
 					yourClass: getApp().globalData.yourData.studentClass,
 					yourID: getApp().globalData.yourData.studentID,
 					yourName: getApp().globalData.yourData.studentName
-				}
+				},
+				showButton:''
 			}
 		},
 		methods: {
-			getAllInfo: async function() {
+			submitAllInfo: async function() {
 				let _this = this;
 				
-				// if(getApp().globalData.yourData._id!=''){
-				// 	console.log('已存在用户不能再注册');
-				// 	return;
-				// }
 				//用于提交信息到数据库
 				const addStudentInfo = function() {
 					return new Promise(function(resolve, reject) {
@@ -103,6 +99,11 @@
 				// await submitInfo();
 				// }
 				
+				uni.showLoading({
+					title: '加载ing...',
+					mask:true
+				})
+				
 				console.log('你的_id=>');
 				console.log(_this.yourDataTemp._id);
 				console.log('你的openid=>');
@@ -137,16 +138,24 @@
 				
 				getApp().globalData.yourData=newStudentAllInfo.result.data[0];
 				
+				uni.hideLoading();
 				//console.log(getApp().globalData.yourData);
 				
 			}
 		},
 		onShow: function() {
+
 			let _this=this;
 			
 			console.log("information Show");
-					
-			_this.yourDataTemp.wechatId=getApp().globalData.yourData.wechatId;
+
+			if(_this.yourDataTemp._id==''){
+				_this.showButton='注册信息'
+			}else{
+				_this.showButton='修改信息'
+			}
+			//_this.yourDataTemp.wechatId=getApp().globalData.yourData.wechatId;
+			
 
 		}
 	}

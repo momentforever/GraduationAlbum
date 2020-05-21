@@ -7,6 +7,7 @@
 ```javascript
 		booksInfo : [{
 			_id:'',
+			wechatId:''
 			studentSchool: '',
 			studentDepartment: '',
 			studentClass: '',
@@ -55,3 +56,26 @@
 ## 全局变量
 
 存入个人信息
+
+##最终版
+
+???存疑
+
+```javascript
+		yourData : {
+			_id:'',
+			wechatId:'',
+			studentSchool:'',
+			studentDepartment:'',
+			studentClass:'',
+			studentID:'',
+			studentName:''
+			bookInfo : [{
+				photoUrl:'',
+				leaveMsg:'',
+				bookTemplate:''//用来存放用户选择的模板
+			}]
+		}
+
+
+```
