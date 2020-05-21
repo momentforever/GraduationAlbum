@@ -3,10 +3,13 @@
 	<view>
 		<view>
 			<button @click="choosePhoto">上传照片</button>
+			<p>输入框:</p>
 			<input class="uni-input" placeholder="输入您想说的话" v-model="booksInfo[0].leaveMsg"/>
+			<p>***********************</p>
 		</view>
 		<view>
 			<image :src="tempPhotoUrl"></image>
+			<p>显示的文本:</p>
 			<h2>{{booksInfo[0].leaveMsg}}</h2>
 		</view>
 		<view>

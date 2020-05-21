@@ -134,17 +134,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
-    return {};
+    return {
+      booksInfo: [{
+        _id: '',
+        studentSchool: '',
+        studentDepartment: '',
+        studentClass: '',
+        studentName: '',
+        studentID: '',
+        photoUrl: '',
+        leaveMsg: '',
+        bookTemplate: '' }] };
 
 
   },
   methods: {},
 
 
-  onShow: function () {var _onShow = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var queryAllBooks, allBooks;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+  onShow: function () {var _onShow = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this, queryAllBooks, allBooks;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+
+              _this = this;
               console.log('index Show');
 
               queryAllBooks = function queryAllBooks() {
@@ -157,16 +176,22 @@ var _default =
                       studentClass: getApp().globalData.yourData.studentClass },
 
                     success: function success(res) {
-                      resolve(res);
+                      resolve(res.result.data);
                     } });
 
                 });
-              };_context.next = 4;return (
+              };_context.next = 5;return (
 
 
-                queryAllBooks());case 4:allBooks = _context.sent;
+                queryAllBooks());case 5:allBooks = _context.sent;
 
+              console.log("数据库中的书籍信息=>");
               console.log(allBooks);
+
+              _this.booksInfo = allBooks;
+
+              console.log("本地中的书籍信息=>");
+              console.log(_this.booksInfo);
 
               // if(getApp().globalData.yourData._id==''){
               // 	console.log("未注册");
@@ -174,7 +199,7 @@ var _default =
               // 		url: '../information/information'
               // 	});
               // }
-            case 6:case "end":return _context.stop();}}}, _callee);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
+            case 11:case "end":return _context.stop();}}}, _callee, this);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 8)["default"]))
 
 /***/ })
