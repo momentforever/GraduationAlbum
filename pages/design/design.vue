@@ -9,7 +9,7 @@
 		<view>
 			<image :src="tempPhotoUrl"></image>
 			<p>显示的文本:</p>
-			<h2>{{booksInfo[0].leaveMsg}}</h2>
+			<!-- <h2>{{booksInfo[0].leaveMsg}}</h2> -->
 		</view>
 		<view>
 			<button @click="submitToDatabase">提交信息</button>
@@ -23,16 +23,11 @@
 			return {
 				tempPhotoUrl:'',
 				booksInfo : [{
-					_id:'',
-					wechatId:'',
-					studentSchool: '',
-					studentDepartment: '',
-					studentClass: '',
-					studentName:'',
-					studentID:'',
-					photoUrl:'',
-					leaveMsg:'',
-					bookTemplate:''
+					_id:getApp().globalData.yourBooksInfo._id,
+					yourDataId:getApp().globalData.yourBooksInfo.yourDataId,
+					photoUrl:getApp().globalData.yourBooksInfo.photoUrl,
+					leaveMsg:getApp().globalData.yourBooksInfo.leaveMsg,
+					bookTemplate:getApp().globalData.yourBooksInfo.bookTemplate
 				}]
 			}
 		},
@@ -61,6 +56,7 @@
 			},
 			submitToDatabase:async function(){
 				let _this = this;
+				
 				if(_this.tempPhotoUrl==''||
 				_this.booksInfo[0].leaveMsg==''){
 					console.log('信息不能为空');
@@ -94,12 +90,7 @@
 						uniCloud.callFunction({
 							name: 'addBooksInfo',
 							data: {
-								wechatId:getApp().globalData.yourData.wechatId,
-								studentSchool: getApp().globalData.yourData.studentSchool,
-								studentDepartment: getApp().globalData.yourData.studentDepartment,
-								studentClass: getApp().globalData.yourData.studentClass,
-								studentName:getApp().globalData.yourData.studentName,
-								studentID:getApp().globalData.yourData.studentID,
+								yourDataId:getApp().globalData.yourData._id,
 								photoUrl:_this.booksInfo[0].photoUrl,
 								leaveMsg:_this.booksInfo[0].leaveMsg,
 								bookTemplate:''
@@ -116,7 +107,7 @@
 						uniCloud.callFunction({
 							name:'queryYourBooks',
 							data:{
-								wechatId:getApp().globalData.yourData.wechatId
+								yourDataId:getApp().globalData.yourData._id
 							},
 							success:function(result){
 								resolve(result);
@@ -126,31 +117,41 @@
 				}
 
 				console.log("成功上传");
+				
 				_this.booksInfo[0].photoUrl = await uploadPhoto();
 				
 				console.log('booksinfo是=>');
 				console.log(_this.booksInfo[0]);
+				
 				let addBookInfoResult = await addBookInfo();
 				
-				console.log('你的传入query的openid是=>');
-				console.log(getApp().globalData.yourData.wechatId);
+				console.log('你的传入query的_id是=>');
+				console.log(getApp().globalData.yourData._id);
 				
 				
 				let bookInfo= await getBooksInfo();
 				console.log(bookInfo.result.data[0]);
-				_this.booksInfo=bookInfo.result.data[0];
+				
+				//同步信息
+				_this.booksInfo[0]=bookInfo.result.data[0];
 				console.log('book信息是=>');
-				console.log(_this.booksInfo);
+				console.log(_this.booksInfo[0]);
 				
 				uni.hideLoading();
 			}
 		},
 		onShow: function() {
+			let _this = this;
 			console.log('index Show');
 			
-			console.log('index页面的booksinfo');
-			console.log(getApp().globalData.yourBooksInfo);
 
+			
+			//同步信息
+			//_this.booksInfo[0]=getApp().globalData.yourBooksInfo;
+			console.log('index页面的booksinfo=>');
+			console.log(getApp().globalData.yourBooksInfo);			
+			
+			
 			// if(getApp().globalData.yourData._id==''){
 			// 	console.log("未注册");
 			// 	uni.switchTab({

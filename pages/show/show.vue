@@ -1,10 +1,9 @@
 <template>
 	<view>
 		<view v-for="bookInfo in booksInfo">
-			<p>{{bookInfo.studentID}}</p>
-			<p>{{bookInfo.studentName}}</p>
 			<image :src="bookInfo.photoUrl"></image>
 			<p>{{bookInfo.leaveMsg}}</p>
+			<p>{{bookInfo.bookTemplate}}</p>
 			<h4>********************</h4>
 		</view>
 	</view>
@@ -17,11 +16,7 @@
 			return {
 				booksInfo : [{
 					_id:'',
-					studentSchool: '',
-					studentDepartment: '',
-					studentClass: '',
-					studentName:'',
-					studentID:'',
+					yourDataId:'',
 					photoUrl:'',
 					leaveMsg:'',
 					bookTemplate:''
@@ -32,14 +27,15 @@
 
 		},
 		onShow: async function() {
-			uni.showLoading({
-				title: '请稍等...',
-				mask:true
-			})
+			// uni.showLoading({
+			// 	title: '请稍等...',
+			// 	mask:true
+			// })
 			
 			let _this=this;
 			console.log('index Show');
-			
+			console.log("yourData=>");
+			console.log(getApp().globalData.yourData);
 			const queryAllBooks = function(){
 				return new Promise(function(resolve,reject){
 					uniCloud.callFunction({
@@ -56,6 +52,8 @@
 				})
 			}
 			
+			console.log("yourData=>");
+			console.log(getApp().globalData.yourData);
 			
 			let allBooks = await queryAllBooks();
 			
@@ -74,7 +72,7 @@
 			// 	});
 			// }
 			
-			uni.hideLoading();
+			// uni.hideLoading();
 		}
 	}
 </script>

@@ -48,7 +48,7 @@
 					uniCloud.callFunction({
 						name:'queryYourBooks',
 						data:{
-							wechatId:openId.result.data.openid
+							yourDataId:yourInfo.result.data[0]._id
 						},
 						success:function(result){
 							resolve(result);
@@ -67,25 +67,38 @@
 			
 			let openId = await getOpenId();
 			
-			let yourInfo=await getStudentInfo();
-			
-			let yourBookInfo=await getBooksInfo();
-			
 			console.log('你的openid是=>');
 			console.log(openId.result.data.openid);
 			
-			if(yourInfo.result.data==[]){
+			let yourInfo=await getStudentInfo();
+			
+			console.log('你的yourInfo是=>');
+			console.log(yourInfo.result.data[0]);
+						
+			let yourBookInfo;
+			
+			if(yourInfo.result.data[0]==undefined){
 				console.log('未注册');
 			}else{
+				console.log("已注册");
 				//将用户信息同步到本地
 				getApp().globalData.yourData=yourInfo.result.data[0];
 				
-				//将自己的书籍信息同步到本地
-				getApp().globalData.yourBooksInfo=yourBookInfo.result.data;
-				
-				
-				console.log('登录时调用的信息=>');
 				console.log(getApp().globalData.yourData);
+				
+				yourBookInfo=await getBooksInfo();
+				
+				console.log('你的yourBookInfo是=>');
+				console.log(yourBookInfo);
+			}
+			
+			if(yourBookInfo.result.data[0]==undefined){
+				 console.log("未填写相册");
+			}else{
+				console.log("填写过相册");
+				//将自己的书籍信息同步到本地
+				getApp().globalData.yourBooksInfo=yourBookInfo.result.data[0];
+				
 				console.log(getApp().globalData.yourBooksInfo);
 			}
 			
@@ -109,12 +122,7 @@
 			},
 			yourBooksInfo : [{
 				_id:'',
-				wechatId:'',
-				studentSchool: '',
-				studentDepartment: '',
-				studentClass: '',
-				studentName:'',
-				studentID:'',
+				yourDataId:'',
 				photoUrl:'',
 				leaveMsg:'',
 				bookTemplate:''

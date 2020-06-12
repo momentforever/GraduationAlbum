@@ -128,8 +128,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
-//
+/* WEBPACK VAR INJECTION */(function(uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -147,11 +146,7 @@ var _default =
     return {
       booksInfo: [{
         _id: '',
-        studentSchool: '',
-        studentDepartment: '',
-        studentClass: '',
-        studentName: '',
-        studentID: '',
+        yourDataId: '',
         photoUrl: '',
         leaveMsg: '',
         bookTemplate: '' }] };
@@ -162,14 +157,15 @@ var _default =
 
 
   onShow: function () {var _onShow = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this, queryAllBooks, allBooks;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-              uni.showLoading({
-                title: '请稍等...',
-                mask: true });
-
+              // uni.showLoading({
+              // 	title: '请稍等...',
+              // 	mask:true
+              // })
 
               _this = this;
               console.log('index Show');
-
+              console.log("yourData=>");
+              console.log(getApp().globalData.yourData);
               queryAllBooks = function queryAllBooks() {
                 return new Promise(function (resolve, reject) {
                   uniCloud.callFunction({
@@ -184,10 +180,12 @@ var _default =
                     } });
 
                 });
-              };_context.next = 6;return (
+              };
 
+              console.log("yourData=>");
+              console.log(getApp().globalData.yourData);_context.next = 9;return (
 
-                queryAllBooks());case 6:allBooks = _context.sent;
+                queryAllBooks());case 9:allBooks = _context.sent;
 
               console.log("数据库中的书籍信息=>");
               console.log(allBooks);
@@ -204,8 +202,9 @@ var _default =
               // 	});
               // }
 
-              uni.hideLoading();case 13:case "end":return _context.stop();}}}, _callee, this);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 8)["default"]))
+              // uni.hideLoading();
+            case 15:case "end":return _context.stop();}}}, _callee, this);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 8)["default"]))
 
 /***/ })
 

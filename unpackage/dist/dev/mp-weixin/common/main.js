@@ -137,7 +137,7 @@ __webpack_require__.r(__webpack_exports__);
                   uniCloud.callFunction({
                     name: 'queryYourBooks',
                     data: {
-                      wechatId: openId.result.data.openid },
+                      yourDataId: yourInfo.result.data[0]._id },
 
                     success: function success(result) {
                       resolve(result);
@@ -154,31 +154,44 @@ __webpack_require__.r(__webpack_exports__);
 
                 getWechatCode());case 9:wechatCode = _context.sent;_context.next = 12;return (
 
-                getOpenId());case 12:openId = _context.sent;_context.next = 15;return (
-
-                getStudentInfo());case 15:yourInfo = _context.sent;_context.next = 18;return (
-
-                getBooksInfo());case 18:yourBookInfo = _context.sent;
+                getOpenId());case 12:openId = _context.sent;
 
               console.log('你的openid是=>');
-              console.log(openId.result.data.openid);
+              console.log(openId.result.data.openid);_context.next = 17;return (
 
-              if (yourInfo.result.data == []) {
-                console.log('未注册');
+                getStudentInfo());case 17:yourInfo = _context.sent;
+
+              console.log('你的yourInfo是=>');
+              console.log(yourInfo.result.data[0]);if (!(
+
+
+
+              yourInfo.result.data[0] == undefined)) {_context.next = 24;break;}
+              console.log('未注册');_context.next = 32;break;case 24:
+
+              console.log("已注册");
+              //将用户信息同步到本地
+              getApp().globalData.yourData = yourInfo.result.data[0];
+
+              console.log(getApp().globalData.yourData);_context.next = 29;return (
+
+                getBooksInfo());case 29:yourBookInfo = _context.sent;
+
+              console.log('你的yourBookInfo是=>');
+              console.log(yourBookInfo);case 32:
+
+
+              if (yourBookInfo.result.data[0] == undefined) {
+                console.log("未填写相册");
               } else {
-                //将用户信息同步到本地
-                getApp().globalData.yourData = yourInfo.result.data[0];
-
+                console.log("填写过相册");
                 //将自己的书籍信息同步到本地
-                getApp().globalData.yourBooksInfo = yourBookInfo.result.data;
+                getApp().globalData.yourBooksInfo = yourBookInfo.result.data[0];
 
-
-                console.log('登录时调用的信息=>');
-                console.log(getApp().globalData.yourData);
                 console.log(getApp().globalData.yourBooksInfo);
               }
 
-              uni.hideLoading();case 23:case "end":return _context.stop();}}}, _callee, this);}));function onLaunch() {return _onLaunch.apply(this, arguments);}return onLaunch;}(),
+              uni.hideLoading();case 34:case "end":return _context.stop();}}}, _callee, this);}));function onLaunch() {return _onLaunch.apply(this, arguments);}return onLaunch;}(),
 
   onShow: function onShow() {
     console.log('App Show');
@@ -198,12 +211,7 @@ __webpack_require__.r(__webpack_exports__);
 
     yourBooksInfo: [{
       _id: '',
-      wechatId: '',
-      studentSchool: '',
-      studentDepartment: '',
-      studentClass: '',
-      studentName: '',
-      studentID: '',
+      yourDataId: '',
       photoUrl: '',
       leaveMsg: '',
       bookTemplate: '' }] } };exports.default = _default;
