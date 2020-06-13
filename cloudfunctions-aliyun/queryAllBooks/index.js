@@ -14,7 +14,7 @@ exports.main = async (event, context) => {
 	const collectionBooksInfo = db.collection('booksinfo')
 	let res = []
 	for(let i in idList.data){
-		console.log(idList.data[i]._id);
+		//console.log(idList.data[i]._id);
 		res[i] = await collectionBooksInfo.where({
 			yourDataId: idList.data[i]._id,
 		}).get()

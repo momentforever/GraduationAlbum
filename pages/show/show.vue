@@ -4,7 +4,7 @@
 			<image :src="bookInfo.photoUrl"></image>
 			<p>{{bookInfo.leaveMsg}}</p>
 			<p>{{bookInfo.bookTemplate}}</p>
-			<h4>********************</h4>
+			<h4>{{dividingLine}}</h4>
 		</view>
 	</view>
 </template>
@@ -14,6 +14,7 @@
 	export default {
 		data() {
 			return {
+				dividingLine:'',
 				booksInfo : [{
 					_id:'',
 					yourDataId:'',
@@ -24,18 +25,17 @@
 			}
 		},
 		methods: {
-
 		},
 		onShow: async function() {
-			// uni.showLoading({
-			// 	title: '请稍等...',
-			// 	mask:true
-			// })
+			uni.showLoading({
+				title: '请稍等...',
+				mask:true
+			})
 			
 			let _this=this;
-			console.log('index Show');
-			console.log("yourData=>");
-			console.log(getApp().globalData.yourData);
+			
+			console.log('show Show');
+				
 			const queryAllBooks = function(){
 				return new Promise(function(resolve,reject){
 					uniCloud.callFunction({
@@ -46,7 +46,7 @@
 							studentClass: getApp().globalData.yourData.studentClass
 						},
 						success:function(res){
-							resolve(res.result.data)
+							resolve(res.result)
 						}
 					})
 				})
@@ -60,11 +60,16 @@
 			console.log("数据库中的书籍信息=>");
 			console.log(allBooks);
 			
-			_this.booksInfo=allBooks;
+					
+			for(var i in allBooks){	
+				_this.booksInfo[i]=allBooks[i].data[0];
+			}
 			
 			console.log("本地中的书籍信息=>");
-			console.log(_this.booksInfo);
+			console.log(_this.booksInfo[0]);
 			
+			_this.dividingLine="**************";
+
 			// if(getApp().globalData.yourData._id==''){
 			// 	console.log("未注册");
 			// 	uni.switchTab({
@@ -72,7 +77,7 @@
 			// 	});
 			// }
 			
-			// uni.hideLoading();
+			uni.hideLoading();
 		}
 	}
 </script>

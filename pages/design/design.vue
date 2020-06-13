@@ -8,7 +8,7 @@
 		</view>
 		<view>
 			<image :src="tempPhotoUrl"></image>
-			<p>显示的文本:</p>
+			<!-- <p>显示的文本:</p> -->
 			<!-- <h2>{{booksInfo[0].leaveMsg}}</h2> -->
 		</view>
 		<view>
@@ -21,7 +21,7 @@
 	export default {
 		data() {
 			return {
-				tempPhotoUrl:'',
+				tempPhotoUrl:getApp().globalData.yourBooksInfo.photoUrl,
 				booksInfo : [{
 					_id:getApp().globalData.yourBooksInfo._id,
 					yourDataId:getApp().globalData.yourBooksInfo.yourDataId,
@@ -142,9 +142,17 @@
 		},
 		onShow: function() {
 			let _this = this;
-			console.log('index Show');
+			console.log('design Show');
 			
 
+			// _this.booksInfo[0] = {
+			// 	_id:getApp().globalData.yourBooksInfo._id,
+			// 	yourDataId:getApp().globalData.yourBooksInfo.yourDataId,
+			// 	photoUrl:getApp().globalData.yourBooksInfo.photoUrl,
+			// 	leaveMsg:getApp().globalData.yourBooksInfo.leaveMsg,
+			// 	bookTemplate:getApp().globalData.yourBooksInfo.bookTemplate
+			// }
+			// _this.tempPhotoUrl=getApp().globalData.yourBooksInfo.photoUrl
 			
 			//同步信息
 			//_this.booksInfo[0]=getApp().globalData.yourBooksInfo;

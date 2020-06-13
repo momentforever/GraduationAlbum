@@ -1,1 +1,1 @@
-<view><block wx:for="{{booksInfo}}" wx:for-item="bookInfo" wx:for-index="__i0__"><view><image src="{{bookInfo.photoUrl}}"></image><view class="_p">{{bookInfo.leaveMsg}}</view><view class="_p">{{bookInfo.bookTemplate}}</view><view class="_h4">********************</view></view></block></view>
+<view><block wx:for="{{booksInfo}}" wx:for-item="bookInfo" wx:for-index="__i0__"><view><image src="{{bookInfo.photoUrl}}"></image><view class="_p">{{bookInfo.leaveMsg}}</view><view class="_p">{{bookInfo.bookTemplate}}</view><view class="_h4">{{dividingLine}}</view></view></block></view>

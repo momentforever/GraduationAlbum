@@ -115,7 +115,7 @@
 				console.log('第一次查询的结果=>');
 				console.log(studentAllInfo.result.data);
 				
-				if(studentAllInfo.result.data==[]){
+				if(studentAllInfo.result.data[0]==undefined){
 					console.log('第一次注册账号');
 					let submitRes = await addStudentInfo();
 					console.log('增添用户返回值=>');

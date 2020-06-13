@@ -69,13 +69,14 @@
 			
 			console.log('你的openid是=>');
 			console.log(openId.result.data.openid);
+			getApp().globalData.yourData.wechatId=openId.result.data.openid;
 			
 			let yourInfo=await getStudentInfo();
 			
 			console.log('你的yourInfo是=>');
 			console.log(yourInfo.result.data[0]);
 						
-			let yourBookInfo;
+			
 			
 			if(yourInfo.result.data[0]==undefined){
 				console.log('未注册');
@@ -86,21 +87,24 @@
 				
 				console.log(getApp().globalData.yourData);
 				
-				yourBookInfo=await getBooksInfo();
+				
+				let yourBookInfo=await getBooksInfo();
 				
 				console.log('你的yourBookInfo是=>');
 				console.log(yourBookInfo);
+				
+				if(yourBookInfo.result.data[0]==undefined){
+					 console.log("未填写相册");
+				}else{
+					console.log("填写过相册");
+					//将自己的书籍信息同步到本地
+					getApp().globalData.yourBooksInfo=yourBookInfo.result.data[0];
+					
+					console.log(getApp().globalData.yourBooksInfo);
+				}
 			}
 			
-			if(yourBookInfo.result.data[0]==undefined){
-				 console.log("未填写相册");
-			}else{
-				console.log("填写过相册");
-				//将自己的书籍信息同步到本地
-				getApp().globalData.yourBooksInfo=yourBookInfo.result.data[0];
-				
-				console.log(getApp().globalData.yourBooksInfo);
-			}
+
 			
 			uni.hideLoading();
 		},

@@ -1,1 +1,1 @@
-<view><view class="_div"></view></view>
+<view><view class="_div"><view class="_h2">{{text}}</view></view></view>
