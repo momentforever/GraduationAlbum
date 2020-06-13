@@ -150,8 +150,9 @@ var _default =
         yourDataId: '',
         photoUrl: '',
         leaveMsg: '',
-        bookTemplate: '' }] };
+        bookTemplate: '' }],
 
+      randomNum: '' };
 
   },
   methods: {},
@@ -198,7 +199,7 @@ var _default =
               console.log("本地中的书籍信息=>");
               console.log(_this.booksInfo[0]);
 
-              _this.dividingLine = "**************";
+              _this.randomNum = Math.random() * 100;
 
               // if(getApp().globalData.yourData._id==''){
               // 	console.log("未注册");

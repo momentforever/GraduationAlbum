@@ -167,17 +167,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-              yourInfo.result.data[0] == undefined)) {_context.next = 25;break;}
-              console.log('未注册');_context.next = 34;break;case 25:
+              yourInfo.result.data[0] == undefined)) {_context.next = 26;break;}
+              console.log('未注册');
+              uni.redirectTo({
+                url: '/pages/information/information' });_context.next = 35;break;case 26:
+
 
               console.log("已注册");
               //将用户信息同步到本地
               getApp().globalData.yourData = yourInfo.result.data[0];
 
-              console.log(getApp().globalData.yourData);_context.next = 30;return (
+              console.log(getApp().globalData.yourData);_context.next = 31;return (
 
 
-                getBooksInfo());case 30:yourBookInfo = _context.sent;
+                getBooksInfo());case 31:yourBookInfo = _context.sent;
 
               console.log('你的yourBookInfo是=>');
               console.log(yourBookInfo);
@@ -187,15 +190,13 @@ __webpack_require__.r(__webpack_exports__);
               } else {
                 console.log("填写过相册");
                 //将自己的书籍信息同步到本地
-                getApp().globalData.yourBooksInfo = yourBookInfo.result.data[0];
+                getApp().globalData.yourBooksInfo[0] = yourBookInfo.result.data[0];
 
-                console.log(getApp().globalData.yourBooksInfo);
-              }case 34:
-
-
+                console.log(getApp().globalData.yourBooksInfo[0]);
+              }case 35:
 
 
-              uni.hideLoading();case 35:case "end":return _context.stop();}}}, _callee, this);}));function onLaunch() {return _onLaunch.apply(this, arguments);}return onLaunch;}(),
+              uni.hideLoading();case 36:case "end":return _context.stop();}}}, _callee, this);}));function onLaunch() {return _onLaunch.apply(this, arguments);}return onLaunch;}(),
 
   onShow: function onShow() {
     console.log('App Show');

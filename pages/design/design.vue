@@ -21,13 +21,13 @@
 	export default {
 		data() {
 			return {
-				tempPhotoUrl:getApp().globalData.yourBooksInfo.photoUrl,
+				tempPhotoUrl:getApp().globalData.yourBooksInfo[0].photoUrl,
 				booksInfo : [{
-					_id:getApp().globalData.yourBooksInfo._id,
-					yourDataId:getApp().globalData.yourBooksInfo.yourDataId,
-					photoUrl:getApp().globalData.yourBooksInfo.photoUrl,
-					leaveMsg:getApp().globalData.yourBooksInfo.leaveMsg,
-					bookTemplate:getApp().globalData.yourBooksInfo.bookTemplate
+					_id:getApp().globalData.yourBooksInfo[0]._id,
+					yourDataId:getApp().globalData.yourBooksInfo[0].yourDataId,
+					photoUrl:getApp().globalData.yourBooksInfo[0].photoUrl,
+					leaveMsg:getApp().globalData.yourBooksInfo[0].leaveMsg,
+					bookTemplate:getApp().globalData.yourBooksInfo[0].bookTemplate
 				}]
 			}
 		},
@@ -101,7 +101,22 @@
 						})
 					})
 				}
-				
+				const updateBookInfo = function(){
+					return new Promise(function(resolve,reject){
+						uniCloud.callFunction({
+							name: 'updateBooksInfo',
+							data: {
+								yourDataId:getApp().globalData.yourData._id,
+								photoUrl:_this.booksInfo[0].photoUrl,
+								leaveMsg:_this.booksInfo[0].leaveMsg,
+								bookTemplate:''
+							},
+							success:function(res){
+								resolve(res)
+							}
+						})
+					})
+				}
 				const getBooksInfo=function(){
 					return new Promise(function(resolve,reject){
 						uniCloud.callFunction({
@@ -117,25 +132,31 @@
 				}
 
 				console.log("成功上传");
+				if(_this.tempPhotoUrl!=getApp().globalData.yourBooksInfo[0].photoUrl){	
+					console.log("重新上传照片");
+					_this.booksInfo[0].photoUrl = await uploadPhoto();
+				}else{
+					console.log("与原来照片一样");
+				}
 				
-				_this.booksInfo[0].photoUrl = await uploadPhoto();
+				// console.log('booksinfo是=>');
+				// console.log(_this.booksInfo[0]);
 				
-				console.log('booksinfo是=>');
-				console.log(_this.booksInfo[0]);
+				let bookInfoJudge= await getBooksInfo();
 				
-				let addBookInfoResult = await addBookInfo();
-				
-				console.log('你的传入query的_id是=>');
-				console.log(getApp().globalData.yourData._id);
-				
-				
-				let bookInfo= await getBooksInfo();
-				console.log(bookInfo.result.data[0]);
+				if(bookInfoJudge.result.data[0]==undefined){		
+					let addBookInfoResult = await addBookInfo();
+				}else{
+					let	updateBookInfoResult = await updateBookInfo();
+				}
 				
 				//同步信息
+				let bookInfo= await getBooksInfo();
+				console.log(bookInfo.result.data[0]);
 				_this.booksInfo[0]=bookInfo.result.data[0];
-				console.log('book信息是=>');
-				console.log(_this.booksInfo[0]);
+				getApp().globalData.yourBooksInfo[0]=_this.booksInfo[0];
+				console.log('全局的book信息是=>');
+				console.log(getApp().globalData.yourBooksInfo[0]);
 				
 				uni.hideLoading();
 			}
@@ -143,17 +164,7 @@
 		onShow: function() {
 			let _this = this;
 			console.log('design Show');
-			
-
-			// _this.booksInfo[0] = {
-			// 	_id:getApp().globalData.yourBooksInfo._id,
-			// 	yourDataId:getApp().globalData.yourBooksInfo.yourDataId,
-			// 	photoUrl:getApp().globalData.yourBooksInfo.photoUrl,
-			// 	leaveMsg:getApp().globalData.yourBooksInfo.leaveMsg,
-			// 	bookTemplate:getApp().globalData.yourBooksInfo.bookTemplate
-			// }
-			// _this.tempPhotoUrl=getApp().globalData.yourBooksInfo.photoUrl
-			
+						
 			//同步信息
 			//_this.booksInfo[0]=getApp().globalData.yourBooksInfo;
 			console.log('index页面的booksinfo=>');

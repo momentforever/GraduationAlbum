@@ -4,8 +4,8 @@
 			<image :src="bookInfo.photoUrl"></image>
 			<p>{{bookInfo.leaveMsg}}</p>
 			<p>{{bookInfo.bookTemplate}}</p>
-			<h4>{{dividingLine}}</h4>
 		</view>
+		<p hidden>{{randomNum}}</p>
 	</view>
 </template>
 
@@ -21,7 +21,8 @@
 					photoUrl:'',
 					leaveMsg:'',
 					bookTemplate:''
-				}]
+				}],
+				randomNum:''
 			}
 		},
 		methods: {
@@ -68,7 +69,7 @@
 			console.log("本地中的书籍信息=>");
 			console.log(_this.booksInfo[0]);
 			
-			_this.dividingLine="**************";
+			_this.randomNum=Math.random()*100;
 
 			// if(getApp().globalData.yourData._id==''){
 			// 	console.log("未注册");

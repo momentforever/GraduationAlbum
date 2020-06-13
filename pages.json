@@ -12,13 +12,25 @@
 	},{
 		"path": "pages/information/information",
 		"style": {
-			"navigationBarTitleText": "账户"
+			"navigationBarTitleText": "修改"
 		}
 	}
         ,{
             "path" : "pages/design/design",
             "style" : {
+				"navigationBarTitleText": "修改"
+			}
+        }
+        ,{
+            "path" : "pages/designshow/designshow",
+            "style" : {
 				"navigationBarTitleText": "设计"
+			}
+        }
+        ,{
+            "path" : "pages/informationshow/informationshow",
+            "style" : {
+				"navigationBarTitleText": "账户"
 			}
         }
     ],
@@ -41,10 +53,10 @@
 				"pagePath": "pages/show/show",
 				"text": "照片展示"
 			}, {
-				"pagePath": "pages/information/information",
+				"pagePath": "pages/informationshow/informationshow",
 				"text": "个人信息"
 			},{
-            "pagePath" : "pages/design/design",
+            "pagePath" : "pages/designshow/designshow",
 			"text": "个人设计"
         }
 			

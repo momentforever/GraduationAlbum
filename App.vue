@@ -80,6 +80,9 @@
 			
 			if(yourInfo.result.data[0]==undefined){
 				console.log('未注册');
+				uni.redirectTo({
+					url:'/pages/information/information'
+				})
 			}else{
 				console.log("已注册");
 				//将用户信息同步到本地
@@ -98,13 +101,11 @@
 				}else{
 					console.log("填写过相册");
 					//将自己的书籍信息同步到本地
-					getApp().globalData.yourBooksInfo=yourBookInfo.result.data[0];
+					getApp().globalData.yourBooksInfo[0]=yourBookInfo.result.data[0];
 					
-					console.log(getApp().globalData.yourBooksInfo);
+					console.log(getApp().globalData.yourBooksInfo[0]);
 				}
 			}
-			
-
 			
 			uni.hideLoading();
 		},

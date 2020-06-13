@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/show/show",
     "pages/information/information",
-    "pages/design/design"
+    "pages/design/design",
+    "pages/designshow/designshow",
+    "pages/informationshow/informationshow"
   ],
   "subPackages": [],
   "window": {
@@ -27,16 +29,16 @@
         "text": "照片展示"
       },
       {
-        "pagePath": "pages/information/information",
+        "pagePath": "pages/informationshow/informationshow",
         "text": "个人信息"
       },
       {
-        "pagePath": "pages/design/design",
+        "pagePath": "pages/designshow/designshow",
         "text": "个人设计"
       }
     ]
   },
   "permission": {},
   "usingComponents": {},
-  "sitemapLocation": "sitemap14.json"
+  "sitemapLocation": "sitemap84.json"
 }

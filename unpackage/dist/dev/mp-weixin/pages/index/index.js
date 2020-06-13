@@ -138,7 +138,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -160,40 +160,14 @@ var _default =
               _this = this;
               console.log("index show");
 
-              // function takeLongTime(){
-              // 	return new Promise(resolve=>{
-              // 		setTimeout(()=>resolve('longTimeValue'),10000);
-              // 	});
-              // }
+              if (getApp().globalData.yourData._id == '' &&
+              getApp().globalData.yourData.wechatId != '') {
+                console.log("必须注册");
+                uni.redirectTo({
+                  url: '/pages/information/information' });
 
-              // let res=await takeLongTime();
-              // console.log(res);
-              // _this.text=res;
-
-              // const queryAllBooks = function(){
-              // 	return new Promise(function(resolve,reject){
-              // 		uniCloud.callFunction({
-              // 			name: 'queryAllBooks',
-              // 			data: {
-              // 				studentSchool: '1',
-              // 				studentDepartment: '1',
-              // 				studentClass: '1'
-              // 			},
-              // 			success:function(res){
-              // 				resolve(res.result)
-              // 			}
-              // 		})
-              // 	})
-              // }
-
-              // let allBooks = await queryAllBooks();
-
-              // console.log("数据库中的信息=>");
-              // console.log(allBooks);
-
-              // console.log("第一个人的第一个信息=>");
-              // console.log(allBooks[0].data[0]);
-            case 2:case "end":return _context.stop();}}}, _callee, this);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
+              }case 3:case "end":return _context.stop();}}}, _callee, this);}));function onShow() {return _onShow.apply(this, arguments);}return onShow;}() };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 ],[[16,"common/runtime","common/vendor"]]]);
