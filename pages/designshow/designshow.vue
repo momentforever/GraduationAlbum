@@ -30,7 +30,7 @@
 		methods: {
 			toDesign:function(){
 				uni.navigateTo({
-					url: '../design/design'
+					url:'../chooseTemplate/chooseTemplate'
 				})
 			}
 		},
@@ -40,7 +40,7 @@
 			if(getApp().globalData.yourBooksInfo[0]._id==''){
 				console.log("开始您的初次设计");
 				uni.redirectTo({
-					url:'../design/design'
+					url:'../chooseTemplate/chooseTemplate'
 				})
 			}
 			

@@ -1,19 +1,23 @@
 <template>
-	<view>
+	<view>			
 		<view>
 			<button @click="choosePhoto">上传照片</button>
 			<p>输入框:</p>
-			<input class="uni-input" placeholder="输入您想说的话" v-model="booksInfo[0].leaveMsg"/>
+			<input class="uni-input" placeholder="输入您想说的话" @input="updateLeaveMsg"/>
 			<p>***********************</p>
 		</view>
 		<view>
 			<image :src="tempPhotoUrl"></image>
-			<!-- <p>显示的文本:</p> -->
-			<!-- <h2>{{booksInfo[0].leaveMsg}}</h2> -->
+			<p>选择的模板:</p>
+			<p>{{booksInfo[0].bookTemplate}}</p>
+			<p>显示的文本:</p>
+			<h2>{{booksInfo[0].leaveMsg}}</h2>
 		</view>
 		<view>
 			<button @click="submitToDatabase">提交信息</button>
+			<button @click="chooseTemplate">选择模板</button>
 		</view>
+		<p hidden>{{randomNum}}</p>
 	</view>
 </template>
 
@@ -28,10 +32,15 @@
 					photoUrl:getApp().globalData.yourBooksInfo[0].photoUrl,
 					leaveMsg:getApp().globalData.yourBooksInfo[0].leaveMsg,
 					bookTemplate:getApp().globalData.yourBooksInfo[0].bookTemplate
-				}]
+				}],
+				randomNum:''
 			}
 		},
 		methods: {
+			updateLeaveMsg:function(e){
+				//console.log(e);
+				this.booksInfo[0].leaveMsg=e.detail.value
+			},
 			choosePhoto:async function(){
 				let _this = this;
 				
@@ -56,9 +65,11 @@
 			},
 			submitToDatabase:async function(){
 				let _this = this;
-				
+				console.log("_this.bookInfo[0].bookTemplate=>");
+				console.log(_this.booksInfo[0].bookTemplate);
 				if(_this.tempPhotoUrl==''||
-				_this.booksInfo[0].leaveMsg==''){
+				_this.booksInfo[0].leaveMsg==''||
+				_this.booksInfo[0].bookTemplate==''){
 					console.log('信息不能为空');
 					return;
 				}
@@ -93,7 +104,7 @@
 								yourDataId:getApp().globalData.yourData._id,
 								photoUrl:_this.booksInfo[0].photoUrl,
 								leaveMsg:_this.booksInfo[0].leaveMsg,
-								bookTemplate:''
+								bookTemplate:_this.booksInfo[0].bookTemplate
 							},
 							success:function(res){
 								resolve(res)
@@ -109,7 +120,7 @@
 								yourDataId:getApp().globalData.yourData._id,
 								photoUrl:_this.booksInfo[0].photoUrl,
 								leaveMsg:_this.booksInfo[0].leaveMsg,
-								bookTemplate:''
+								bookTemplate:_this.booksInfo[0].bookTemplate
 							},
 							success:function(res){
 								resolve(res)
@@ -158,18 +169,38 @@
 				console.log('全局的book信息是=>');
 				console.log(getApp().globalData.yourBooksInfo[0]);
 				
+				uni.navigateBack({
+					url:'../designshow/designshow',
+					fail:function(result){
+						console.log(result);
+					}
+				})
+				
 				uni.hideLoading();
+			},
+			chooseTemplate:function(){
+				uni.navigateTo({
+					url:'../chooseTemplate/chooseTemplate'
+				})
 			}
+		},
+		onLoad:function(option){
+			let _this = this;
+			
+			console.log(option);
+			_this.booksInfo[0].bookTemplate=option.bookTemp;
 		},
 		onShow: function() {
 			let _this = this;
 			console.log('design Show');
 						
 			//同步信息
-			//_this.booksInfo[0]=getApp().globalData.yourBooksInfo;
+			//_this.booksInfo[0]=getApp().globalData.yourBooksInfo[0];
 			console.log('index页面的booksinfo=>');
-			console.log(getApp().globalData.yourBooksInfo);			
+			console.log(getApp().globalData.yourBooksInfo[0]);
 			
+			
+			_this.randomNum=Math.random()*100;
 			
 			// if(getApp().globalData.yourData._id==''){
 			// 	console.log("未注册");
@@ -182,5 +213,4 @@
 </script>
 
 <style>
-
 </style>

@@ -1,17 +1,44 @@
 <template>
 	<view>
 		<view>
-			<p>学校：</p>
-			<input class="uni-input" placeholder="输入" v-model="yourDataTemp.yourSchool" />
-			<p>院系：</p>
-			<input class="uni-input" placeholder="输入" v-model="yourDataTemp.yourDepartment" />
-			<p>班级：</p>
-			<input class="uni-input" placeholder="输入" v-model="yourDataTemp.yourClass" />
-			<p>学号：</p>
-			<input class="uni-input" placeholder="输入" v-model="yourDataTemp.yourID" />
-			<p>姓名：</p>
-			<input class="uni-input" placeholder="输入" v-model="yourDataTemp.yourName" />
-			<button @click="submitAllInfo">{{showButton}}</button>
+			<view class="planet">
+			  <image class="h1" src="../../static/images/4.png" ></image>
+			  <button style='font-size:40rpx' class="shine" @click="submitAllInfo">✦{{showButton}}✦</button>
+			</view>
+			<view  class="form">
+			  <van-cell-group>
+			    <van-field
+			      label="学校"
+			      placeholder="请输入学校"
+			      border="false"
+				  @input="updateSchool"
+			    />
+			    <van-field
+			      label="院系"
+			      placeholder="请输入院系"
+			      border="false"
+				  @input="updateDepartment"
+			    />
+			    <van-field
+			      label="班级"
+			      placeholder="请输入班级"
+			      border="false"
+				  @input="updateClass"
+			    />
+			    <van-field
+			      label="学号"
+			      placeholder="请输入学号"
+			      border="false"
+				  @input="updateID"
+			    />
+			    <van-field
+			      label="姓名"
+			      placeholder="请输入姓名"
+			      border="false"
+				  @input="updateName"
+			    />
+			  </van-cell-group>
+			</view>
 		</view>
 	</view>
 </template>
@@ -33,6 +60,22 @@
 			}
 		},
 		methods: {
+			updateSchool:function(e){
+				this.yourDataTemp.yourSchool=e.detail;
+			},
+			updateDepartment:function(e){
+				this.yourDataTemp.yourDepartment=e.detail;
+			},
+			updateClass:function(e){
+				this.yourDataTemp.yourClass=e.detail;
+			},
+			updateID:function(e){
+				this.yourDataTemp.yourID=e.detail;
+			},
+			updateName:function(e){
+				this.yourDataTemp.yourName=e.detail;
+			},
+
 			submitAllInfo: async function() {
 				let _this = this;
 				
@@ -89,15 +132,14 @@
 					})
 				}
 				
-				// if(_this.studentSchool==''||
-				// _this.yourDataTemp.yourSchool==''||
-				// _this.yourDataTemp.yourDepartment==''||
-				// _this.yourDataTemp.yourClass==''||
-				// (_this.yourDataTemp.yourID==''){
-				// 	console.log('信息不完整');
-				// }else{	
-				// await submitInfo();
-				// }
+				if(_this.studentSchool==''||
+				_this.yourDataTemp.yourSchool==''||
+				_this.yourDataTemp.yourDepartment==''||
+				_this.yourDataTemp.yourClass==''||
+				_this.yourDataTemp.yourID==''){
+					console.log('信息不完整');
+					return;
+				}
 				
 				uni.showLoading({
 					title: '加载ing...',
@@ -138,6 +180,10 @@
 				
 				getApp().globalData.yourData=newStudentAllInfo.result.data[0];
 				
+				uni.redirectTo({
+					url: "../informationshow/informationshow"
+				})
+				
 				uni.hideLoading();
 				//console.log(getApp().globalData.yourData);
 				
@@ -162,5 +208,38 @@
 </script>
 
 <style>
+page{
+  background-color:#141319;
+}
+
+.h1{
+  margin-top: 60rpx;
+  width: 768rpx;
+  height: 576rpx;
+}
+.shine{
+  color: white;
+  background-color: #141319;
+}
+.planet{
+  height: 650rpx;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-shadow:0px 0px 5px yellow;
+}
+
+
+.form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
 
 </style>
