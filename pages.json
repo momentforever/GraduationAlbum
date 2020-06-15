@@ -12,36 +12,45 @@
 	},{
 		"path": "pages/information/information",
 		"style": {
-			"navigationBarTitleText": "修改"
+			"navigationBarTitleText": "修改信息"
 		}
 	}
         ,{
             "path" : "pages/design/design",
             "style" : {
-				"navigationBarTitleText": "修改"
+				"navigationBarTitleText": "修改设计"
 			}
         }
         ,{
             "path" : "pages/designshow/designshow",
             "style" : {
-				"navigationBarTitleText": "设计"
+				"navigationBarTitleText": "我的设计"
 			}
         }
         ,{
             "path" : "pages/informationshow/informationshow",
             "style" : {
-				"navigationBarTitleText": "账户"
+				"navigationBarTitleText": "个人"
 			}
         }
         ,{
             "path" : "pages/chooseTemplate/chooseTemplate",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "模板选择"
+			}
+        }
+        ,{
+            "path" : "pages/aboutUs/aboutUs",
+            "style" : {
+				"navigationBarTitleText": "关于我们"
+			}
         }
     ],
 	"globalStyle": {
+		"backgroundTextStyle":"light",
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#007AFF",
+		"navigationBarBackgroundColor": "#1d1d1d",
 		"backgroundColor": "#FFFFFF",
 		"usingComponents": { //这里为方便，全局引入了所有组件，也可以在某个page下单独引用某个组件
 			"demo-block": "/wxcomponents/vant/demo-block/index",
@@ -108,17 +117,18 @@
 				"text": "照片展示",
 				"iconPath":"static/icon/xingqiu.png",
 				"selectedIconPath":"static/icon/xingqiu1.png"
-			}, {
+			}, 
+			{
+			    "pagePath" : "pages/designshow/designshow",
+				"text": "个人设计",
+				"iconPath":"static/icon/bianji.png",
+				"selectedIconPath":"static/icon/bianji1.png"
+			},{
 				"pagePath": "pages/informationshow/informationshow",
 				"text": "我的",
 				"iconPath":"static/icon/yonghu.png",
 				"selectedIconPath":"static/icon/yonghu1.png"
-			},{
-            "pagePath" : "pages/designshow/designshow",
-			"text": "个人设计",
-			"iconPath":"static/icon/bianji.png",
-			"selectedIconPath":"static/icon/bianji1.png"
-        }
+			}
 			
 		]
 	},

@@ -18,6 +18,8 @@ exports.main = async (event, context) => {
 		res[i] = await collectionBooksInfo.where({
 			yourDataId: idList.data[i]._id,
 		}).get()
+		res[i].name= idList.data[i].studentName
 	}
+	console.log(res);
 	return res
 };

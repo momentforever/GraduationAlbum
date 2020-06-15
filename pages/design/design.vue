@@ -1,5 +1,23 @@
 <template>
-	<view>			
+	<view>
+		<view>
+			<button @click="choosePhoto">上传照片</button>
+			<p>输入框:</p>
+			<input class="uni-input" placeholder="输入您想说的话" @input="updateLeaveMsg"/>
+			<button @click="submitToDatabase">提交信息</button>
+			<h2>***********************</h2>
+		</view>
+		<view>
+			<templatea :photourl="tempPhotoUrl" :leavemsg="booksInfo[0].leaveMsg" :name="name" v-if="tempa"></templatea>
+			<templateb :photourl="tempPhotoUrl" :leavemsg="booksInfo[0].leaveMsg" :name="name" v-if="tempb"></templateb>
+			<templatec :photourl="tempPhotoUrl" :leavemsg="booksInfo[0].leaveMsg" :name="name" v-if="tempc"></templatec>
+		</view>
+		<view>
+			<button @click="chooseTemplate">选择模板</button>
+		</view>
+		<p hidden>{{randomNum}}</p>
+	</view>
+<!-- 	<view>			
 		<view>
 			<button @click="choosePhoto">上传照片</button>
 			<p>输入框:</p>
@@ -18,10 +36,13 @@
 			<button @click="chooseTemplate">选择模板</button>
 		</view>
 		<p hidden>{{randomNum}}</p>
-	</view>
+	</view> -->
 </template>
 
 <script>
+	import templatea from "../template/templatea.vue"
+	import templateb from "../template/templateb.vue"
+	import templatec from "../template/templatec.vue"
 	export default {
 		data() {
 			return {
@@ -33,8 +54,17 @@
 					leaveMsg:getApp().globalData.yourBooksInfo[0].leaveMsg,
 					bookTemplate:getApp().globalData.yourBooksInfo[0].bookTemplate
 				}],
-				randomNum:''
+				randomNum:'',
+				name:getApp().globalData.yourData.studentName,
+				tempa:'',
+				tempb:'',
+				tempc:''
 			}
+		},
+		components:{
+			templatea,
+			templateb,
+			templatec
 		},
 		methods: {
 			updateLeaveMsg:function(e){
@@ -169,11 +199,14 @@
 				console.log('全局的book信息是=>');
 				console.log(getApp().globalData.yourBooksInfo[0]);
 				
-				uni.navigateBack({
-					url:'../designshow/designshow',
-					fail:function(result){
-						console.log(result);
-					}
+				// uni.navigateBack({
+				// 	url:'../designshow/designshow',
+				// 	fail:function(result){
+				// 		console.log(result);
+				// 	}
+				// })
+				uni.reLaunch({
+					url:'../designshow/designshow'
 				})
 				
 				uni.hideLoading();
@@ -202,6 +235,20 @@
 			
 			_this.randomNum=Math.random()*100;
 			
+			console.log(_this.booksInfo[0].bookTemplate);
+			if(_this.booksInfo[0].bookTemplate==1){
+				_this.tempa=true;
+				_this.tempb=false;
+				_this.tempc=false;
+			}else if(_this.booksInfo[0].bookTemplate==2){
+				_this.tempa=false;
+				_this.tempb=true;
+				_this.tempc=false;
+			}else if(_this.booksInfo[0].bookTemplate==3){
+				_this.tempa=false;
+				_this.tempb=false;
+				_this.tempc=true;
+			}
 			// if(getApp().globalData.yourData._id==''){
 			// 	console.log("未注册");
 			// 	uni.switchTab({
@@ -213,4 +260,7 @@
 </script>
 
 <style>
+page{
+  background-color: lightgray;
+}
 </style>

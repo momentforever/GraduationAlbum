@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "展示",
-  "usingComponents": {}
+  "usingComponents": {
+    "templatea": "/pages/template/templatea",
+    "templateb": "/pages/template/templateb",
+    "templatec": "/pages/template/templatec"
+  }
 }

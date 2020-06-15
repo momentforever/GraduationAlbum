@@ -5,6 +5,7 @@
 			
 			console.log('App Launch');
 			
+			
 			const getWechatCode = function() {
 				return new Promise(function(resolve, reject) {
 					uni.login({

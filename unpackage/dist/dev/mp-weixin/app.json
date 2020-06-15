@@ -6,13 +6,15 @@
     "pages/design/design",
     "pages/designshow/designshow",
     "pages/informationshow/informationshow",
-    "pages/chooseTemplate/chooseTemplate"
+    "pages/chooseTemplate/chooseTemplate",
+    "pages/aboutUs/aboutUs"
   ],
   "subPackages": [],
   "window": {
+    "backgroundTextStyle": "light",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#007AFF",
+    "navigationBarBackgroundColor": "#1d1d1d",
     "backgroundColor": "#FFFFFF"
   },
   "tabBar": {
@@ -31,16 +33,16 @@
         "selectedIconPath": "static/icon/xingqiu1.png"
       },
       {
-        "pagePath": "pages/informationshow/informationshow",
-        "text": "我的",
-        "iconPath": "static/icon/yonghu.png",
-        "selectedIconPath": "static/icon/yonghu1.png"
-      },
-      {
         "pagePath": "pages/designshow/designshow",
         "text": "个人设计",
         "iconPath": "static/icon/bianji.png",
         "selectedIconPath": "static/icon/bianji1.png"
+      },
+      {
+        "pagePath": "pages/informationshow/informationshow",
+        "text": "我的",
+        "iconPath": "static/icon/yonghu.png",
+        "selectedIconPath": "static/icon/yonghu1.png"
       }
     ]
   },

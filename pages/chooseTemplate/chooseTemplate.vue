@@ -9,11 +9,11 @@
 		</button> 
 		
 		<button class="celect" style="height:600rpx;width:650rpx;margin-bottom:70rpx;" @click="chooseTemplate2">
-		  <image class="p1" src="../../static/images/28.png" mode="widthFix"></image>
+		  <image class="p1" src="../../static/images/25.png" mode="widthFix"></image>
 		</button> 
 		
 		<button class="celect" style="height:600rpx;width:650rpx;margin-bottom:70rpx;" @click="chooseTemplate3">
-		  <image class="p1" src="../../static/images/25.png" mode="widthFix"></image>
+		  <image class="p1" src="../../static/images/28.png" mode="widthFix"></image>
 		</button> 
 		
 		<button class="celect1" style="height:600rpx;width:650rpx;margin-bottom:70rpx;">
@@ -38,7 +38,7 @@
 				})
 			},
 			chooseTemplate2:function(){
-				this.bookTemplate=3;
+				this.bookTemplate=2;
 				console.log(getApp().globalData.yourBooksInfo[0].bookTemplate);
 				uni.reLaunch({
 					url:"../design/design?bookTemp="+this.bookTemplate

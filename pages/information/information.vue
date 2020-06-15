@@ -11,30 +11,35 @@
 			      label="学校"
 			      placeholder="请输入学校"
 			      border="false"
+				  :value="yourDataTemp.yourSchool"
 				  @input="updateSchool"
 			    />
 			    <van-field
 			      label="院系"
 			      placeholder="请输入院系"
 			      border="false"
+				  :value="yourDataTemp.yourDepartment"
 				  @input="updateDepartment"
 			    />
 			    <van-field
 			      label="班级"
 			      placeholder="请输入班级"
 			      border="false"
+				  :value="yourDataTemp.yourClass"
 				  @input="updateClass"
 			    />
 			    <van-field
 			      label="学号"
 			      placeholder="请输入学号"
 			      border="false"
+				  :value="yourDataTemp.yourID"
 				  @input="updateID"
 			    />
 			    <van-field
 			      label="姓名"
 			      placeholder="请输入姓名"
 			      border="false"
+				  :value="yourDataTemp.yourName"
 				  @input="updateName"
 			    />
 			  </van-cell-group>
@@ -180,10 +185,12 @@
 				
 				getApp().globalData.yourData=newStudentAllInfo.result.data[0];
 				
-				uni.redirectTo({
-					url: "../informationshow/informationshow"
+				uni.navigateBack({
+					url:'./informationshow/informationshow',
+					fail:function(result){
+						console.log(result);
+					}
 				})
-				
 				uni.hideLoading();
 				//console.log(getApp().globalData.yourData);
 				
